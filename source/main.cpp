@@ -18,6 +18,7 @@ int main()
     srand(time(0));
     RenderWindow fenetre(VideoMode(900,700),"Casse Briques");
 
+    Controleur controleurJ(fenetre);
 
     while(fenetre.isOpen())
     {
@@ -93,7 +94,7 @@ int main()
                         controleurJ.gestionSelecSouris();
                         if(jeuDebut)
                         {
-                            controleurJ.debutJeu();
+                            //controleurJ.debutJeu();
                         }
                     }
                 }
@@ -147,7 +148,7 @@ int main()
                     {
                         if(sf::Keyboard::isKeyPressed(Keyboard::Escape))
                         {
-                            controleurJ.pauseJeu();
+                            //controleurJ.pauseJeu();
                         }
                     }
                 }
@@ -165,7 +166,7 @@ int main()
                         char characTape;
                         characTape=static_cast<char>(evenement.text.unicode);
                         std::cout<<"ASCII character : "<<evenement.text.unicode<<std::endl;
-                        controleurJ.saisieL(characTape);
+                        //controleurJ.saisieL(characTape);
                     }
 
                 }
@@ -188,13 +189,15 @@ int main()
 
         fenetre.clear(Color(82,82,82));
 
+        controleurJ.afficheFondEc();
+
         if(jeuEnCours)
         {
 
         }
         else
         {
-
+            controleurJ.afficheMenu();
         }
 
         fenetre.display();

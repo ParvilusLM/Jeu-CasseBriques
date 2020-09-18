@@ -2,7 +2,9 @@
 #define DEF_MENU
 
 #include <SFML/Graphics.hpp>
-
+#include "enums.h"
+#include "varG.h"
+#include "constantes.h"
 
 class Menu
 {

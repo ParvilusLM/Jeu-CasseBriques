@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1597530366 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\main.cpp
+1600391969 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
+	"controleur.h"
 
 1525815618 c:\program files (x86)\codeblocks\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -418,9 +419,43 @@
 
 1599013215 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\briques.cpp
 
-1599007821 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\controleur.cpp
+1600391961 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\controleur.cpp
+	"controleur.h"
 
-1599007927 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\decor.cpp
+1600391901 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\decor.cpp
+	"decor.h"
 
 1599096750 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\info.cpp
+
+1600391901 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\controleur.h
+	<SFML/Graphics.hpp>
+	"decor.h"
+	"enums.h"
+	"varG.h"
+	"constantes.h"
+
+1600391841 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\decor.h
+	<SFML/Graphics.hpp>
+	"menu.h"
+	"enums.h"
+	"varG.h"
+	"constantes.h"
+
+1600376893 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.h
+	<SFML/Graphics.hpp>
+	"enums.h"
+	"varG.h"
+	"constantes.h"
+
+1600376353 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\enums.h
+	<SFML/Graphics.hpp>
+
+1600376852 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\varg.h
+
+1600134715 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\constantes.h
+
+1599012439 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.cpp
+
+1599411867 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.cpp
+	"menu.h"
 
