@@ -5,8 +5,9 @@
 
 struct ElBrique
 {
-    sf::Sprite m_brique;
+    sf::Sprite sBrique;
     int etat;
+    int couleur;
 };
 
 

@@ -8,7 +8,7 @@ Decor::Decor(sf::RenderWindow& fenetre):m_fenetre(0)
 
     m_menu=new Menu(*m_fenetre);
 
-    m_tFondG.loadFromFile("donnees/cadreG.png");
+    m_tFondG.loadFromFile("donnees/fondG.png");
     m_sFondG.setTexture(m_tFondG);
 }
 

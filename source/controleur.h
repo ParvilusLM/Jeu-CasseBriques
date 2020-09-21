@@ -3,9 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "decor.h"
-#include "enums.h"
-#include "varG.h"
-#include "constantes.h"
 
 class Controleur
 {
@@ -21,8 +18,8 @@ public:
 
 
 private:
-    sf::RenderWindow *m_fenetre;
-    Decor *m_decor;
+    sf::RenderWindow* m_fenetre;
+    Decor* m_decor;
 
 
 

@@ -11,14 +11,10 @@ class Balle
 public:
     Balle(sf::RenderWindow &fenetre);
     ~Balle();
-    void initBalle();
-    void mouvementB(int indicB);
-    void mouvementProject();
+
+    void deplaceB(int indicB);
     void afficheBalle();
-    sf::FloatRect getBoitEnglBalle(int indicB);
-    sf::FloatRect getBoitEnglProject()
-    void changerVitesseBalle(int action);
-    void multiplierBalle();
+    void getBoitEngloBalle(int indicB);
 
 
 
@@ -28,7 +24,6 @@ private:
     std::vector<float >  m_vecAngleB;
     std::vector<float > m_vecVitesseB;
     std::vector<sf::Vector2f > m_directionB;
-    std::vector<sf::Sprite > m_vecProjectiles
 
 
 };

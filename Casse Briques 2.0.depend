@@ -434,23 +434,29 @@
 	"varG.h"
 	"constantes.h"
 
-1600391841 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\decor.h
+1600639078 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\decor.h
 	<SFML/Graphics.hpp>
 	"menu.h"
+	"info.h"
+	"palette.h"
+	"balle.h"
+	"briques.h"
+	"bonus.h"
 	"enums.h"
 	"varG.h"
 	"constantes.h"
 
-1600376893 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.h
+1600646712 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.h
 	<SFML/Graphics.hpp>
 	"enums.h"
 	"varG.h"
 	"constantes.h"
 
-1600376353 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\enums.h
+1600631878 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\enums.h
 	<SFML/Graphics.hpp>
 
-1600376852 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\varg.h
+1600470561 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\varg.h
+	<SFML/Graphics.hpp>
 
 1600134715 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\constantes.h
 
@@ -458,4 +464,20 @@
 
 1599411867 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.cpp
 	"menu.h"
+
+1600140855 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\info.h
+	<SFML/Graphics.hpp>
+
+1599274704 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.h
+
+1600632090 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\balle.h
+	<SFML/Graphics.hpp>
+	"enums.h"
+	"varG.h"
+	"constantes.h"
+
+1600146135 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\briques.h
+	<SFML/Graphics.hpp>
+
+1600642392 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\bonus.h
 

@@ -2,7 +2,14 @@
 #define DEF_DECOR
 
 #include <SFML/Graphics.hpp>
+
 #include "menu.h"
+#include "info.h"
+#include "palette.h"
+#include "balle.h"
+#include "briques.h"
+#include "bonus.h"
+
 #include "enums.h"
 #include "varG.h"
 #include "constantes.h"

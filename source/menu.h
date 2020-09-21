@@ -92,8 +92,7 @@ private:
     //boites engl des boutons
     sf::FloatRect boiteEBJ,boiteEBI,boiteEBQ,boiteEBPr,boiteEBSuiv,boiteEBOk,boiteEBPR,boiteEBPI,boiteEBPQ,boiteEBFQ,boiteEBFR,boiteEBESOk;
 
-
-
 };
 
 #endif // DEF_MENU
+

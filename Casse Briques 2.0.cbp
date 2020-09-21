@@ -13,7 +13,14 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="C:/Program Files (x86)/CodeBlocks/SFML-2.5.1/include" />
 				</Compiler>
+				<Linker>
+					<Add library="C:/Program Files (x86)/CodeBlocks/SFML-2.5.1/lib/libsfml-graphics-d.a" />
+					<Add library="C:/Program Files (x86)/CodeBlocks/SFML-2.5.1/lib/libsfml-system-d.a" />
+					<Add library="C:/Program Files (x86)/CodeBlocks/SFML-2.5.1/lib/libsfml-window-d.a" />
+					<Add directory="C:/Program Files (x86)/CodeBlocks/SFML-2.5.1/lib" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
