@@ -10,6 +10,15 @@ struct ElBrique
     int couleur;
 };
 
+struct ElBalle
+{
+    sf::Sprite sBalle;
+    float angleB;
+    float vitesseB;
+    float dirX;
+    float dirY;
+};
+
 
 enum TypeMenu
 {

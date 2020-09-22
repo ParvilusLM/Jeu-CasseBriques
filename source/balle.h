@@ -11,6 +11,7 @@ class Balle
 public:
     Balle(sf::RenderWindow &fenetre);
     ~Balle();
+    void initBalle();
 
     void deplaceB(int indicB);
     void afficheBalle();
@@ -20,11 +21,7 @@ public:
 
 private:
     sf::RenderWindow *m_fenetre;
-    std::vector<sf::Sprite > m_vecBalle;
-    std::vector<float >  m_vecAngleB;
-    std::vector<float > m_vecVitesseB;
-    std::vector<sf::Vector2f > m_directionB;
-
+    std::vector<ElBalle > m_vecBalle;
 
 };
 
