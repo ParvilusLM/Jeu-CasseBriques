@@ -16,10 +16,10 @@ Menu::Menu(sf::RenderWindow &fenetre):m_fenetre(0)
     m_tMenuEnregScore.loadFromFile("donnees/meilleur_score.png");
 
     //definitions boiteEBoutons
-    boiteEBJ.width=8.f*20.f;
-    boiteEBJ.height=2.f*20.f;
-    boiteEBJ.left=18.f*20.f;
-    boiteEBJ.top=14.5f*20.f;
+    boiteEBJ.width=14.f*20.f;
+    boiteEBJ.height=3.5f*20.f;
+    boiteEBJ.left=15.5f*20.f;
+    boiteEBJ.top=27.f*20.f;
 
     boiteEBI.width=2.f*20.f;
     boiteEBI.height=1.6f*20.f;

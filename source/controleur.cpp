@@ -31,6 +31,11 @@ void Controleur::afficheMenu()
 
 }
 
+void Controleur::afficheJeu()
+{
+    m_decor->afficheCadreJeu();
+}
+
 void Controleur::afficheFondEc()
 {
     m_decor->afficheFondEc();

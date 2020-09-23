@@ -13,10 +13,18 @@ struct ElBrique
 struct ElBalle
 {
     sf::Sprite sBalle;
+    int etat;
     float angleB;
     float vitesseB;
     float dirX;
     float dirY;
+};
+
+struct ElPalette
+{
+    sf::Sprite sPalette;
+    int etat;
+    std::vector<sf::Sprite > vecProjectiles;
 };
 
 

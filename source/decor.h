@@ -22,12 +22,16 @@ public:
     Menu& getMenu();
 
     void afficheFondEc();
+    void afficheCadreJeu();
 
 private:
     sf::RenderWindow* m_fenetre;
     Menu* m_menu;
     sf::Texture m_tFondG;
     sf::Sprite m_sFondG;
+
+    sf::Texture m_tCadreJeu;
+    sf::Sprite m_sCadreJeu;
 
 };
 

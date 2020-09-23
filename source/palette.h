@@ -22,13 +22,14 @@ public:
 private:
     sf::RenderWindow* m_fenetre;
 
-    //pour la palette
+    //texture pour la palette
     sf::Texture m_tPalette;
-    sf::Sprite m_sPalette;
 
-    //pour les projectiles
+    //texture pour les projectiles
     sf::Texture m_tProjectiles;
-    std::vector<sf::Sprite > m_vecProjectiles;
+
+    ElPalette m_palette;
+
 
 };
 
