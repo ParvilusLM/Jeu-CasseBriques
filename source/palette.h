@@ -1,6 +1,11 @@
 #ifndef DEF_PALETTE
 #define DEF_PALETTE
 
+#include <SFML/Graphics.hpp>
+#include "enums.h"
+#include "constantes.h"
+#include "varG.h"
+
 class Palette
 {
 public:

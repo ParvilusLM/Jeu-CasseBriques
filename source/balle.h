@@ -21,6 +21,8 @@ public:
 
 private:
     sf::RenderWindow *m_fenetre;
+
+    sf::Texture m_tBalle;
     std::vector<ElBalle > m_vecBalle;
 
 };

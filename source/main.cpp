@@ -13,6 +13,8 @@ bool jeuRejouer=false;
 bool jeuSauvegarde=false;
 int sourisX=0,sourisY=0;
 
+int tabBriq[14][12]={0};
+
 int main()
 {
     srand(time(0));
@@ -94,7 +96,7 @@ int main()
                         controleurJ.gestionSelecSouris();
                         if(jeuDebut)
                         {
-                            //controleurJ.debutJeu();
+                            controleurJ.debutJeu();
                         }
                     }
                 }

@@ -21,15 +21,15 @@ Menu::Menu(sf::RenderWindow &fenetre):m_fenetre(0)
     boiteEBJ.left=15.5f*20.f;
     boiteEBJ.top=27.f*20.f;
 
-    boiteEBI.width=2.f*20.f;
-    boiteEBI.height=1.6f*20.f;
-    boiteEBI.left=18.f*20.f;
-    boiteEBI.top=26.2f*20.f;
+    boiteEBI.width=3.f*20.f;
+    boiteEBI.height=3.f*20.f;
+    boiteEBI.left=9.96f*20.f;
+    boiteEBI.top=30.7f*20.f;
 
-    boiteEBQ.width=2.f*20.f;
-    boiteEBQ.height=1.6f*20.f;
-    boiteEBQ.left=24.f*20.f;
-    boiteEBQ.top=26.2f*20.f;
+    boiteEBQ.width=3.f*20.f;
+    boiteEBQ.height=3.f*20.f;
+    boiteEBQ.left=31.9f*20.f;
+    boiteEBQ.top=30.7f*20.f;
 
     boiteEBPr.width=2.2f*20.f;
     boiteEBPr.height=2.2f*20.f;

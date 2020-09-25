@@ -11,6 +11,6 @@ extern bool jeuFinPartie;
 extern bool jeuSauvegarde;
 extern int sourisX,sourisY;
 
-
+extern int tabBriq[14][12];
 
 #endif // DEF_VARG

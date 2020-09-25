@@ -59,4 +59,21 @@ enum
 
 };
 
+enum
+{
+    C_VIDE,
+    BRIQUE1,
+    BRIQUE2,
+    BRIQUE3,
+    BRIQUE4,
+    BRIQUE5
+};
+
+enum
+{
+    NORMAL,
+    CASSE,
+    DETRUIT
+};
+
 #endif // DEF_ENUMS

@@ -6,6 +6,9 @@ Palette::Palette(sf::RenderWindow& fenetre):m_fenetre(0)
 {
     m_fenetre=&fenetre;
 
+    m_tPalette.loadFromFile("donnees/spriteSheetPalette.png");
+    m_tProjectiles.loadFromFile("donnees/projectile.png");
+
 
 }
 
