@@ -18,7 +18,7 @@ int tabBriq[14][12]={0};
 int main()
 {
     srand(time(0));
-    RenderWindow fenetre(VideoMode(900,700),"Casse Briques");
+    RenderWindow fenetre(VideoMode(LARGEUR_F,HAUTEUR_F),"Casse Briques");
 
     Controleur controleurJ(fenetre);
 

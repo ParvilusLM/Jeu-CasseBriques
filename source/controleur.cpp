@@ -11,6 +11,7 @@ Controleur::Controleur(sf::RenderWindow &fenetre):m_fenetre(0),m_decor(0)
 void Controleur::debutJeu()
 {
     m_decor->getBrique().initBrique(0);
+    m_decor->getPalette().initPalette();
 
 }
 
@@ -41,6 +42,7 @@ void Controleur::afficheJeu()
 {
     m_decor->afficheCadreJeu();
     m_decor->getBrique().afficheBrique();
+    m_decor->getPalette().affichePalette();
 }
 
 void Controleur::afficheFondEc()

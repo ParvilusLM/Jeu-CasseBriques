@@ -14,6 +14,11 @@ Palette::Palette(sf::RenderWindow& fenetre):m_fenetre(0)
 
 void Palette::initPalette()
 {
+    m_palette.sPalette.setOrigin(45.f,17.5f);
+    m_palette.sPalette.setPosition(LARGEUR_F/2,HAUTEUR_F-17.5f-20.f);
+    m_palette.sPalette.setTexture(m_tPalette);
+    m_palette.sPalette.setTextureRect(sf::IntRect(0,0,90,35));
+
 
 }
 
@@ -39,7 +44,7 @@ void Palette::mouvementProjectiles()
 
 void Palette::affichePalette()
 {
-
+    m_fenetre->draw(m_palette.sPalette);
 }
 
 void Palette::afficheProjectiles()

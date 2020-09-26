@@ -24,6 +24,7 @@ struct ElPalette
 {
     sf::Sprite sPalette;
     int etat;
+    float vitesseP;
     std::vector<sf::Sprite > vecProjectiles;
 };
 
@@ -74,6 +75,12 @@ enum
     NORMAL,
     CASSE,
     DETRUIT
+};
+
+enum
+{
+    CAPTURE,
+    LANCEE
 };
 
 #endif // DEF_ENUMS

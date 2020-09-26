@@ -21,6 +21,7 @@ public:
     ~Decor();
     Menu& getMenu();
     Brique& getBrique();
+    Palette& getPalette();
 
     void afficheFondEc();
     void afficheCadreJeu();
@@ -29,6 +30,8 @@ private:
     sf::RenderWindow* m_fenetre;
     Menu* m_menu;
     Brique* m_brique;
+    Palette* m_palette;
+
 
     sf::Texture m_tFondG;
     sf::Sprite m_sFondG;

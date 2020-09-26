@@ -57,7 +57,7 @@ void Brique::initBrique(int niveau)
                 {
                     nouvelBriq.couleur=5;
                     nouvelBriq.etat=NORMAL;
-                    nouvelBriq.sBrique.setTextureRect(sf::IntRect(432,0,48,23));
+                    nouvelBriq.sBrique.setTextureRect(sf::IntRect(384,0,48,23));
 
                 }
                 else
