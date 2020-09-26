@@ -9,6 +9,7 @@ Decor::Decor(sf::RenderWindow& fenetre):m_fenetre(0)
     m_menu=new Menu(*m_fenetre);
     m_brique=new Brique(*m_fenetre);
     m_palette=new Palette(*m_fenetre);
+    m_balle=new Balle(*m_fenetre);
 
     m_tFondG.loadFromFile("donnees/fondG.png");
     m_sFondG.setTexture(m_tFondG);
@@ -30,6 +31,11 @@ Brique& Decor::getBrique()
 Palette& Decor::getPalette()
 {
     return *m_palette;
+}
+
+Balle& Decor::getBalle()
+{
+    return *m_balle;
 }
 
 void Decor::afficheFondEc()

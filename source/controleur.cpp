@@ -12,6 +12,7 @@ void Controleur::debutJeu()
 {
     m_decor->getBrique().initBrique(0);
     m_decor->getPalette().initPalette();
+    m_decor->getBalle().initBalle();
 
 }
 
@@ -43,6 +44,7 @@ void Controleur::afficheJeu()
     m_decor->afficheCadreJeu();
     m_decor->getBrique().afficheBrique();
     m_decor->getPalette().affichePalette();
+    m_decor->getBalle().afficheBalle();
 }
 
 void Controleur::afficheFondEc()

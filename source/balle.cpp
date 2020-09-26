@@ -3,6 +3,7 @@
 Balle::Balle(sf::RenderWindow &fenetre):m_fenetre(0)
 {
     m_fenetre=&fenetre;
+    m_tBalle.loadFromFile("donnees/balle.png");
 
 
 }
@@ -21,8 +22,10 @@ void Balle::initBalle()
     nouvelleBalle.etat=CAPTURE;
     nouvelleBalle.vitesseB=400;
     nouvelleBalle.sBalle.setOrigin(12.5f,12.5f);
-    nouvelleBalle.sBalle.setPosition()
+    nouvelleBalle.sBalle.setPosition((2.45f*20.f)+300.f,700.f-70.f);
     nouvelleBalle.sBalle.setTexture(m_tBalle);
+
+    m_vecBalle.insert(m_vecBalle.end(),nouvelleBalle);
 
 }
 
@@ -37,6 +40,7 @@ void Balle::afficheBalle()
     while(compt<m_vecBalle.size())
     {
         m_fenetre->draw(m_vecBalle.at(compt).sBalle);
+        compt++;
     }
 }
 
