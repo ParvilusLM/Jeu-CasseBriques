@@ -13,7 +13,7 @@ public:
     ~Balle();
     void initBalle();
 
-    void deplaceB(int indicB);
+    void deplaceB();
     void afficheBalle();
     void getBoitEngloBalle(int indicB);
 
@@ -24,6 +24,8 @@ private:
 
     sf::Texture m_tBalle;
     std::vector<ElBalle > m_vecBalle;
+    sf::Clock m_horlBalle;
+    float m_deltaTime;
 
 };
 

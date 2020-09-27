@@ -27,6 +27,12 @@ void Controleur::gestionSelecSouris()
     m_decor->getMenu().selectionElActif();
 }
 
+
+void Controleur::gestionMaJ()
+{
+   m_decor->getBalle().deplaceB();
+}
+
 void Controleur::afficheMenu()
 {
     m_decor->getMenu().afficheMenu();

@@ -10,16 +10,21 @@ Balle::Balle(sf::RenderWindow &fenetre):m_fenetre(0)
 
 void Balle::initBalle()
 {
+    m_horlBalle.restart();
     ElBalle nouvelleBalle;
-    int angl=0;
+    float angl=315.f;
+    /*
     do
     {
-        angl=(std::rand()%180)*2*pi/180;
+        angl= 1 + std::rand()/((RAND_MAX + 1u)/360);
     }
-    while(std::abs(std::cos(angl))<0.7f);
+    while(angl < 45.f);
+    */
+
+    angl=-angl;
 
     nouvelleBalle.angleB=angl;
-    nouvelleBalle.etat=CAPTURE;
+    nouvelleBalle.etat=LANCEE;
     nouvelleBalle.vitesseB=400;
     nouvelleBalle.sBalle.setOrigin(12.5f,12.5f);
     nouvelleBalle.sBalle.setPosition((2.45f*20.f)+300.f,700.f-70.f);
@@ -29,9 +34,19 @@ void Balle::initBalle()
 
 }
 
-void Balle::deplaceB(int indicB)
+void Balle::deplaceB()
 {
-
+    m_deltaTime=m_horlBalle.restart().asSeconds();
+    int compt=0;
+    while(compt<m_vecBalle.size())
+    {
+        float facteur = m_vecBalle.at(compt).vitesseB * m_deltaTime;
+        if(m_vecBalle.at(compt).etat==LANCEE)
+        {
+            m_vecBalle.at(compt).sBalle.move(std::cos(m_vecBalle.at(compt).angleB)*facteur,std::sin(m_vecBalle.at(compt).angleB)*facteur);
+        }
+        compt++;
+    }
 }
 
 void Balle::afficheBalle()

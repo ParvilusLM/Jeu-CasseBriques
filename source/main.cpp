@@ -182,7 +182,7 @@ int main()
 
         if(jeuEnCours)
         {
-
+            controleurJ.gestionMaJ();
         }
         else
         {

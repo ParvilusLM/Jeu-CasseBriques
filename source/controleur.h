@@ -16,6 +16,8 @@ public:
     void afficheFondEc();
     void afficheJeu();
 
+    void gestionMaJ();
+
 
 private:
     sf::RenderWindow* m_fenetre;
