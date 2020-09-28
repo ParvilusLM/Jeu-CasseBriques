@@ -36,7 +36,7 @@ public:
 
 private:
     sf::RenderWindow *m_fenetre;
-    sf::Text m_txtNiveau;
+    sf::Text m_txtNbVie;
     sf::Text m_txtNomsJ;
     sf::Text m_txtScoresJ;
     sf::Text m_txtInfoJeu;
@@ -55,7 +55,11 @@ private:
     std::vector<std::string> m_vecScores;
 
     std::string m_nomAENreg;
+
+    //pour le chron
     sf::Clock m_horlJeu;
+    float m_tempsEcoule;
+
 
 };
 

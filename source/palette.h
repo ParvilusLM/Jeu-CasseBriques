@@ -17,9 +17,10 @@ public:
     void mouvementPalette(int dir);
     void mouvementProjectiles();
 
-    sf::FloatRect getPosPalette();
+    sf::Vector2f getPosPalette();
+    void setPosPalette(sf::Vector2f posPalette);
     std::vector<sf::FloatRect > getPosProjectiles();
-
+    void DonneesMaJ();
 
     void affichePalette();
     void afficheProjectiles();
@@ -34,6 +35,9 @@ private:
     sf::Texture m_tProjectiles;
 
     ElPalette m_palette;
+
+    sf::Clock m_horlPalette;
+    float m_deltaTime;
 
 
 };

@@ -30,7 +30,44 @@ void Controleur::gestionSelecSouris()
 
 void Controleur::gestionMaJ()
 {
-   m_decor->getBalle().deplaceB();
+    m_decor->getPalette().DonneesMaJ();
+    gestMouvBalle();
+}
+
+bool Controleur::gestCollisBalle()
+{
+
+}
+
+bool Controleur::gestCollisPalette()
+{
+    bool collision=false;
+
+    if(m_decor->getPalette().getPosPalette().x - 45.f < 2.45f*20.f)
+    {
+
+        collision=true;
+    }
+
+    if(m_decor->getPalette().getPosPalette().x + 45.f > (2.45f*20.f)+600)
+    {
+        collision=true;
+    }
+
+    return collision;
+}
+
+void Controleur::gestMouvBalle()
+{
+    m_decor->getBalle().mouvementBalle();
+}
+
+void Controleur::gestMouvPalette(int dir)
+{
+    if(!gestCollisPalette())
+    {
+        m_decor->getPalette().mouvementPalette(dir);
+    }
 }
 
 void Controleur::afficheMenu()

@@ -5,14 +5,17 @@ Balle::Balle(sf::RenderWindow &fenetre):m_fenetre(0)
     m_fenetre=&fenetre;
     m_tBalle.loadFromFile("donnees/balle.png");
 
-
+    m_nbBalleCree=0;
 }
 
 void Balle::initBalle()
 {
+    m_vecBalle.clear();
+    m_nbBalleCree++;
+
     m_horlBalle.restart();
     ElBalle nouvelleBalle;
-    float angl=315.f;
+    float angl=0.7f;
     /*
     do
     {
@@ -23,9 +26,10 @@ void Balle::initBalle()
 
     angl=-angl;
 
+    nouvelleBalle.numBalle=m_nbBalleCree;
     nouvelleBalle.angleB=angl;
     nouvelleBalle.etat=LANCEE;
-    nouvelleBalle.vitesseB=400;
+    nouvelleBalle.vitesseB=20;
     nouvelleBalle.sBalle.setOrigin(12.5f,12.5f);
     nouvelleBalle.sBalle.setPosition((2.45f*20.f)+300.f,700.f-70.f);
     nouvelleBalle.sBalle.setTexture(m_tBalle);
@@ -34,7 +38,7 @@ void Balle::initBalle()
 
 }
 
-void Balle::deplaceB()
+void Balle::mouvementBalle()
 {
     m_deltaTime=m_horlBalle.restart().asSeconds();
     int compt=0;
@@ -59,9 +63,22 @@ void Balle::afficheBalle()
     }
 }
 
-void Balle::getBoitEngloBalle(int indicB)
+std::vector<ElBalle > Balle::getBalle()
 {
+    return m_vecBalle;
+}
 
+void Balle::inverserAngle(int numBalle)
+{
+    int compt=0;
+    while(compt<m_vecBalle.size())
+    {
+        if(m_vecBalle.at(compt).numBalle == numBalle)
+        {
+            m_vecBalle.at(compt).angleB=-m_vecBalle.at(compt).angleB;
+        }
+        compt++;
+    }
 }
 
 Balle::~Balle()

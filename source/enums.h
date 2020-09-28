@@ -18,6 +18,7 @@ struct ElBalle
     float vitesseB;
     float dirX;
     float dirY;
+    int numBalle;
 };
 
 struct ElPalette
@@ -26,6 +27,11 @@ struct ElPalette
     int etat;
     float vitesseP;
     std::vector<sf::Sprite > vecProjectiles;
+};
+
+struct ElHorl
+{
+
 };
 
 
@@ -81,6 +87,12 @@ enum
 {
     CAPTURE,
     LANCEE
+};
+
+enum
+{
+    DIR_GAUCHE,
+    DIR_DROITE
 };
 
 #endif // DEF_ENUMS

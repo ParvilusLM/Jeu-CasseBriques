@@ -12,6 +12,7 @@ bool jeuDebut=false;
 bool jeuRejouer=false;
 bool jeuSauvegarde=false;
 int sourisX=0,sourisY=0;
+int scoreTemp=0;
 
 int tabBriq[14][12]={0};
 
@@ -19,6 +20,7 @@ int main()
 {
     srand(time(0));
     RenderWindow fenetre(VideoMode(LARGEUR_F,HAUTEUR_F),"Casse Briques");
+    fenetre.setFramerateLimit(60);
 
     Controleur controleurJ(fenetre);
 
@@ -110,11 +112,11 @@ int main()
                     {
                         if(sf::Keyboard::isKeyPressed(Keyboard::Left))
                         {
-
+                            controleurJ.gestMouvPalette(DIR_GAUCHE);
                         }
                         else if(sf::Keyboard::isKeyPressed(Keyboard::Right))
                         {
-
+                            controleurJ.gestMouvPalette(DIR_DROITE);
                         }
                         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
                         {

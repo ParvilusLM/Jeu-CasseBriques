@@ -12,10 +12,11 @@ public:
     Balle(sf::RenderWindow &fenetre);
     ~Balle();
     void initBalle();
+    void inverserAngle(int numBalle);
 
-    void deplaceB();
+    void mouvementBalle();
     void afficheBalle();
-    void getBoitEngloBalle(int indicB);
+    std::vector<ElBalle > getBalle();
 
 
 
@@ -26,6 +27,7 @@ private:
     std::vector<ElBalle > m_vecBalle;
     sf::Clock m_horlBalle;
     float m_deltaTime;
+    int m_nbBalleCree; //pour donner un identifiant a chaque balle
 
 };
 

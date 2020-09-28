@@ -17,6 +17,10 @@ public:
     void afficheJeu();
 
     void gestionMaJ();
+    bool gestCollisBalle();
+    bool gestCollisPalette();
+    void gestMouvBalle();
+    void gestMouvPalette(int dir);
 
 
 private:
