@@ -45,7 +45,6 @@ bool Controleur::gestCollisPalette()
 
     if(m_decor->getPalette().getPosPalette().x - 45.f < 2.45f*20.f)
     {
-
         collision=true;
     }
 
@@ -67,6 +66,24 @@ void Controleur::gestMouvPalette(int dir)
     if(!gestCollisPalette())
     {
         m_decor->getPalette().mouvementPalette(dir);
+    }
+
+    sf::Vector2f nouvPosP; //pour remettre la palette dans le cadre
+
+    if(m_decor->getPalette().getPosPalette().x - 45.f < 2.45f*20.f) //pour si apres deplacement la palette sort du cadre G
+    {
+        //recadrer pour le cote gauche
+        nouvPosP.x=2.45f*20.f+0.1f+45.f;
+        nouvPosP.y=HAUTEUR_F-17.5f-20.f;
+        m_decor->getPalette().setPosPalette(nouvPosP);
+    }
+
+    if(m_decor->getPalette().getPosPalette().x + 45.f > (2.45f*20.f)+600) //pour si apres deplacement la palette sort du bord cadre D
+    {
+        //recadrer pour le cote droit
+        nouvPosP.x=2.45f*20.f+600.f-0.1f-45.f;
+        nouvPosP.y=HAUTEUR_F-17.5f-20.f;
+        m_decor->getPalette().setPosPalette(nouvPosP);
     }
 }
 

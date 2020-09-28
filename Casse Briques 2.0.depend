@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1601262210 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\main.cpp
+1601263155 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	"controleur.h"
@@ -461,7 +461,7 @@
 
 1601084002 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\constantes.h
 
-1601262779 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.cpp
+1601263641 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.cpp
 	"palette.h"
 
 1600907143 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.cpp
@@ -479,7 +479,7 @@
 	<string>
 	<array>
 
-1601262572 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.h
+1601263532 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.h
 	<SFML/Graphics.hpp>
 	"enums.h"
 	"constantes.h"
