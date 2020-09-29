@@ -10,9 +10,11 @@ public:
     Controleur(sf::RenderWindow &fenetre);
     ~Controleur();
     void debutJeu();
-    void afficheMenu();
+
     void gestionDplSouris();
     void gestionSelecSouris();
+
+    void afficheMenu();
     void afficheFondEc();
     void afficheJeu();
 
@@ -21,6 +23,12 @@ public:
     bool gestCollisPalette();
     void gestMouvBalle();
     void gestMouvPalette(int dir);
+
+    void saisieL(char lettre);
+    void sauvegardeScore();
+    void reinitTablScore();
+
+    void pauseJeu();
 
 
 private:

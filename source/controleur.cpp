@@ -112,6 +112,36 @@ void Controleur::afficheFondEc()
     m_decor->afficheFondEc();
 }
 
+void Controleur::saisieL(char lettre)
+{
+    //m_decor->getInfo().gestSaisieNom(lettre);
+}
+
+void Controleur::sauvegardeScore()
+{
+    //m_decor->getInfo().sauvegardeScore();
+    //jeuSauvegarde=false;
+}
+
+void Controleur::reinitTablScore()
+{
+    //m_decor->getInfo().gestTableauScore();
+}
+
+void Controleur::pauseJeu()
+{
+    if(jeuPause)
+    {
+        jeuPause=false;
+    }
+    else
+    {
+        jeuPause=true;
+        m_decor->getMenu().setTypeMenu(MenuPause);
+
+    }
+}
+
 
 Controleur::~Controleur()
 {

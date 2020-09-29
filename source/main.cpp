@@ -136,7 +136,7 @@ int main()
                         }
                         else if(sf::Keyboard::isKeyPressed(Keyboard::Escape))
                         {
-
+                            controleurJ.pauseJeu();
                         }
                         else if(sf::Keyboard::isKeyPressed(Keyboard::Space))
                         {
@@ -152,7 +152,7 @@ int main()
                     {
                         if(sf::Keyboard::isKeyPressed(Keyboard::Escape))
                         {
-                            //controleurJ.pauseJeu();
+                            controleurJ.pauseJeu();
                         }
                     }
                 }
@@ -184,11 +184,18 @@ int main()
 
         if(jeuEnCours)
         {
-            controleurJ.gestionMaJ();
+            if(!jeuPause)
+            {
+                controleurJ.gestionMaJ();
+            }
+
         }
         else
         {
+            if(jeuSauvegarde)
+            {
 
+            }
         }
 
         fenetre.clear(Color(82,82,82));
