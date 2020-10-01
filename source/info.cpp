@@ -7,7 +7,8 @@ Info::Info(sf::RenderWindow& fenetre):m_fenetre(0)
     m_fenetre=&fenetre;
     m_score=0;
     m_niveau=1;
-    m_nbVie=0;
+    m_nbVie=3;
+    m_nbBrRestants=0;
 
     initInfo();
     chargementDonnees();
@@ -30,15 +31,15 @@ void Info::initInfo()
 
 
     m_txtNomsJ.setFont(m_fntNoms);
-    m_txtNomsJ.setCharacterSize(20);
-    m_txtNomsJ.setPosition(18.3f*20.f+4.f,21.f*20.f-3.f);
-    m_txtNomsJ.setFillColor(sf::Color::Black);
+    m_txtNomsJ.setCharacterSize(40);
+    m_txtNomsJ.setPosition(11.f*20.f+4.f,14.f*20.f-3.f);
+    m_txtNomsJ.setFillColor(sf::Color::Red);
 
 
     m_txtScoresJ.setFont(m_fntNoms);
-    m_txtScoresJ.setCharacterSize(20);
-    m_txtScoresJ.setPosition(22.f*20.f+10.f,21.f*20.f-3.f);
-    m_txtScoresJ.setFillColor(sf::Color::Black);
+    m_txtScoresJ.setCharacterSize(40);
+    m_txtScoresJ.setPosition(24.f*20.f+10.f,14.f*20.f-3.f);
+    m_txtScoresJ.setFillColor(sf::Color::Yellow);
 
 
 
@@ -178,13 +179,13 @@ void Info::gestTableauScore()
     m_streamNomsJ.str("");
     m_streamNomsJ<<m_vecNoms.at(0)<<"\n"<<m_vecNoms.at(1)<<"\n"<<m_vecNoms.at(2)<<"\n";
     m_txtNomsJ.setString(m_streamNomsJ.str());
-    m_txtNomsJ.setLineSpacing(0.6f);
+    m_txtNomsJ.setLineSpacing(0.75f);
 
 
     m_streamScoresJ.str("");
     m_streamScoresJ<<m_vecScores.at(0)<<"\n"<<m_vecScores.at(1)<<"\n"<<m_vecScores.at(2)<<"\n";
     m_txtScoresJ.setString(m_streamScoresJ.str());
-    m_txtScoresJ.setLineSpacing(0.6f);
+    m_txtScoresJ.setLineSpacing(0.75f);
 
 }
 

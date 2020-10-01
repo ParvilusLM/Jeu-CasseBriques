@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Decor::Decor(sf::RenderWindow& fenetre):m_fenetre(0)
+Decor::Decor(sf::RenderWindow& fenetre):m_fenetre(0),m_menu(0),m_brique(0),m_palette(0),m_balle(0),m_info(0)
 {
     m_fenetre=&fenetre;
 
@@ -10,6 +10,7 @@ Decor::Decor(sf::RenderWindow& fenetre):m_fenetre(0)
     m_brique=new Brique(*m_fenetre);
     m_palette=new Palette(*m_fenetre);
     m_balle=new Balle(*m_fenetre);
+    m_info=new Info(*m_fenetre);
 
     m_tFondG.loadFromFile("donnees/fondG.png");
     m_sFondG.setTexture(m_tFondG);
@@ -38,6 +39,11 @@ Balle& Decor::getBalle()
     return *m_balle;
 }
 
+Info& Decor::getInfo()
+{
+    return *m_info;
+}
+
 void Decor::afficheFondEc()
 {
     m_fenetre->draw(m_sFondG);
@@ -50,5 +56,9 @@ void Decor::afficheCadreJeu()
 
 Decor::~Decor()
 {
-
+    delete m_menu;
+    delete m_info;
+    delete m_palette;
+    delete m_balle;
+    delete m_balle;
 }

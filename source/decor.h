@@ -23,6 +23,7 @@ public:
     Brique& getBrique();
     Palette& getPalette();
     Balle& getBalle();
+    Info& getInfo();
 
     void afficheFondEc();
     void afficheCadreJeu();
@@ -33,6 +34,7 @@ private:
     Brique* m_brique;
     Palette* m_palette;
     Balle* m_balle;
+    Info* m_info;
 
 
     sf::Texture m_tFondG;

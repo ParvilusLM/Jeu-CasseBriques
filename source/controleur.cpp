@@ -90,12 +90,12 @@ void Controleur::gestMouvPalette(int dir)
 void Controleur::afficheMenu()
 {
     m_decor->getMenu().afficheMenu();
-    /*
+
     if(m_decor->getMenu().getTypeMenu()==MenuPrincipal)
     {
         afficheInfo();
     }
-    */
+
 
 }
 
@@ -105,11 +105,26 @@ void Controleur::afficheJeu()
     m_decor->getBrique().afficheBrique();
     m_decor->getPalette().affichePalette();
     m_decor->getBalle().afficheBalle();
+    m_decor->getInfo().afficheInfo();
+
+    if(jeuPause)
+    {
+        afficheMenu();
+        if(m_decor->getMenu().getTypeMenu()==MenuEnregScore)
+        {
+            m_decor->getInfo().afficheNomAEnreg();
+        }
+    }
 }
 
 void Controleur::afficheFondEc()
 {
     m_decor->afficheFondEc();
+}
+
+void Controleur::afficheInfo()
+{
+    m_decor->getInfo().afficheInfo();
 }
 
 void Controleur::saisieL(char lettre)

@@ -17,6 +17,7 @@ public:
     void afficheMenu();
     void afficheFondEc();
     void afficheJeu();
+    void afficheInfo();
 
     void gestionMaJ();
     bool gestCollisBalle();
