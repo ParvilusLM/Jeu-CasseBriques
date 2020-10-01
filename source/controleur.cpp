@@ -13,6 +13,8 @@ void Controleur::debutJeu()
     m_decor->getBrique().initBrique(0);
     m_decor->getPalette().initPalette();
     m_decor->getBalle().initBalle();
+    m_decor->getInfo().initInfo2();
+
 
 }
 
@@ -31,7 +33,16 @@ void Controleur::gestionSelecSouris()
 void Controleur::gestionMaJ()
 {
     m_decor->getPalette().DonneesMaJ();
+    m_decor->getInfo().gestionTemps();
     gestMouvBalle();
+
+
+    if(m_decor->getMenu().getBoutonPress()==PAUSER_ACTIF)
+    {
+        m_decor->getInfo().demarrerH();
+        m_decor->getMenu().resetBoutonPress();
+
+    }
 }
 
 bool Controleur::gestCollisBalle()
@@ -145,13 +156,10 @@ void Controleur::reinitTablScore()
 
 void Controleur::pauseJeu()
 {
-    if(jeuPause)
-    {
-        jeuPause=false;
-    }
-    else
+    if(!jeuPause)
     {
         jeuPause=true;
+        m_decor->getInfo().pauseH();
         m_decor->getMenu().setTypeMenu(MenuPause);
 
     }

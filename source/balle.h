@@ -25,8 +25,10 @@ private:
 
     sf::Texture m_tBalle;
     std::vector<ElBalle > m_vecBalle;
-    sf::Clock m_horlBalle;
-    float m_deltaTime;
+
+    //horlBalle
+    ElHorl m_horlBalle;
+
     int m_nbBalleCree; //pour donner un identifiant a chaque balle
 
 };

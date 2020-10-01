@@ -87,6 +87,8 @@ Menu::Menu(sf::RenderWindow &fenetre):m_fenetre(0)
     initMenuFinPart();
     initMenuEnregScore();
 
+    m_boutonPress=AUCUN_EL_ACT;
+
 }
 
 void Menu::initMenuP()
@@ -486,6 +488,8 @@ void Menu::selectionElActif()
         if(m_elementActif==PAUSER_ACTIF)
         {
             jeuPause=false;
+            m_boutonPress=PAUSER_ACTIF;
+
         }
         else if(m_elementActif==PAUSEI_ACTIF)
         {
@@ -546,6 +550,17 @@ void Menu::selectionElActif()
     }
 
 }
+
+int Menu::getBoutonPress()
+{
+    return  m_boutonPress;
+}
+
+void Menu::resetBoutonPress()
+{
+    m_boutonPress=AUCUN_EL_ACT;
+}
+
 
 bool Menu::collisionTS(sf::FloatRect elem)
 {

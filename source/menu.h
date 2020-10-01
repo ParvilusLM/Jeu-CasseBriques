@@ -40,6 +40,9 @@ public:
 
     bool collisionTS(sf::FloatRect elem);
 
+    int getBoutonPress();
+    void resetBoutonPress();
+
     void quitterJeu();
 
 
@@ -52,6 +55,8 @@ private:
     sf::Font m_font3;
 
     int m_elementActif;
+
+    int m_boutonPress;
 
     //pour menu principal
     sf::Texture m_tMenuP;

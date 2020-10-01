@@ -16,8 +16,12 @@ class Info
 {
 public:
     Info(sf::RenderWindow& fenetre);
-    void initInfo();
-    void reinitInfo();
+    void initInfo();//pour les info du menuP
+    void reinitInfo();//pour les info du menuP
+
+    void initInfo2();//pour les info du jeu
+    void reinitInfo2();//pour les info du jeu
+
     int chargementDonnees();
     void initDonneesN();
     void initDonneesScores();
@@ -30,6 +34,13 @@ public:
     void afficheNomAEnreg();
     bool surPodium();
 
+    //fonctions pour gerer l'horloge
+    void reinitialiserH();
+    void demarrerH();
+    void pauseH();
+    float getTemps();
+    void gestionTemps();
+
     template <class T> std::string nbEnString(T nb);
     ~Info();
 
@@ -41,11 +52,11 @@ private:
     sf::Text m_txtScoresJ;
     sf::Text m_txtInfoJeu;
     sf::Text m_txtNomAEnreg;
+    sf::Text m_txtTemps;
 
-    sf::Font m_fntNoms;
-    sf::Font m_fntChiffres;
+    sf::Font m_fntNoms,m_fntTemps,m_fntChiffres;
 
-    std::ostringstream m_streamNomsJ,m_streamScoresJ,m_streamInfoJeu;
+    std::ostringstream m_streamNomsJ,m_streamScoresJ,m_streamInfoJeu,m_streamTxtTemps;
 
     int m_score;
     int m_niveau;
@@ -57,8 +68,7 @@ private:
     std::string m_nomAENreg;
 
     //pour le chron
-    sf::Clock m_horlJeu;
-    float m_tempsEcoule;
+    ElHorl m_horlJ;
 
 
 };

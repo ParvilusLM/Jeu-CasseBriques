@@ -31,7 +31,15 @@ struct ElPalette
 
 struct ElHorl
 {
+    sf::Clock m_horlJeu;
+    float m_tempsEcoule;
+    int etat;
+};
 
+enum
+{
+    EnMarche,
+    EnPause
 };
 
 

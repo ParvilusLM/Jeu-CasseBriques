@@ -5,21 +5,16 @@ using namespace std;
 Info::Info(sf::RenderWindow& fenetre):m_fenetre(0)
 {
     m_fenetre=&fenetre;
-    m_score=0;
-    m_niveau=1;
-    m_nbVie=3;
-    m_nbBrRestants=0;
 
     initInfo();
     chargementDonnees();
     gestTableauScore();
-    gestInfoPartEnCours();
-
 }
 
 void Info::initInfo()
 {
     //les fonts
+    m_fntTemps.loadFromFile("donnees/charlbold.ttf");
     m_fntChiffres.loadFromFile("donnees/keypunc.ttf");
     m_fntNoms.loadFromFile("donnees/ALGER.ttf");
 
@@ -54,21 +49,40 @@ void Info::initInfo()
     m_txtNomAEnreg.setPosition(18.f*20.f+10.f,17.9f*20.f+5.f);
     m_txtNomAEnreg.setFillColor(sf::Color::White);
 
+    m_txtTemps.setFont(m_fntTemps);
+    m_txtTemps.setCharacterSize(40);
+    m_txtTemps.setPosition(700,300);
+    m_txtTemps.setFillColor(sf::Color::Black);
 
 
-    //info sur le niveau en cours
-    m_score=0;
-    m_niveau=1;
-    m_nbVie=0;
+
+
+
 }
 
 void Info::reinitInfo()
 {
-    m_score=0;
-    m_niveau=1;
-    m_nbVie=0;
     m_nomAENreg.clear();
     gestTableauScore();
+}
+
+void Info::initInfo2()
+{
+    //info sur le niveau en cours
+    m_score=0;
+    m_niveau=1;
+    m_nbVie=3;
+    m_nbBrRestants=0;
+
+    //gestion des info durant la partie
+    demarrerH();
+    gestionTemps();
+    gestInfoPartEnCours();
+}
+
+void Info::reinitInfo2()
+{
+    void reinitialiserH();
 }
 
 int Info::chargementDonnees()
@@ -199,10 +213,10 @@ void Info::gestInfoPartEnCours()
 
     //
     m_streamInfoJeu.str("");
-    m_streamInfoJeu<<nbEnString(m_score)<<"\n"<<nbEnString(m_niveau)<<"\n"<<nbEnString(m_nbVie);
+    m_streamInfoJeu<<nbEnString(m_nbVie)<<"\n"<<nbEnString(m_score)<<"\n"<<nbEnString(m_nbBrRestants);
     m_txtInfoJeu.setString(m_streamInfoJeu.str());
 
-
+    gestionTemps();
 }
 
 void Info::gestSaisieNom(char characTape)
@@ -232,8 +246,6 @@ void Info::sauvegardeScore()
         compt++;
     }
 
-
-
     //remplir les vecteurs scores et noms
     posJoueur--;
 
@@ -251,56 +263,40 @@ void Info::sauvegardeScore()
     std::string const nomFichierS("donnees/scoresJ.plm");
     std::string const nomFichierN("donnees/nomsJ.plm");
 
-
     //ecriture dans le fichier score
     {
         int posCurseur=0;
         std::ofstream monFlux(nomFichierS.c_str());
 
-        //monFlux.seekp(posCurseur);
         monFlux<<m_vecScores.at(0)<<std::endl;
 
-        //posCurseur+=m_vecScores.at(0).size()+1;
-        //monFlux.seekp(posCurseur);
         monFlux<<m_vecScores.at(1)<<std::endl;
 
-        //posCurseur+=m_vecScores.at(1).size()+1;
-        //monFlux.seekp(posCurseur);
         monFlux<<m_vecScores.at(2)<<std::endl;
 
         monFlux.close();
 
     }
 
-
-
     //ecriture dans le fichier nom
     {
         int posCurseur=0;
         std::ofstream monFluxN(nomFichierN.c_str());
 
-        //monFluxN.seekp(posCurseur);
         monFluxN<<m_vecNoms.at(0)<<std::endl;
 
-        //posCurseur+=m_vecNoms.at(0).size()+1;
-        //monFluxN.seekp(posCurseur);
         monFluxN<<m_vecNoms.at(1)<<std::endl;
 
-        //posCurseur+=m_vecNoms.at(1).size()+1;
-        //monFluxN.seekp(posCurseur);
         monFluxN<<m_vecNoms.at(2)<<std::endl;
-
 
         monFluxN.close();
     }
-
-
 
 }
 
 void Info::maj_Info()
 {
-
+    gestionTemps();
 }
 
 void Info::afficheInfo()
@@ -308,12 +304,63 @@ void Info::afficheInfo()
     if(jeuEnCours)
     {
         m_fenetre->draw(m_txtInfoJeu);
+        m_fenetre->draw(m_txtTemps);
     }
     else
     {
         m_fenetre->draw(m_txtNomsJ);
         m_fenetre->draw(m_txtScoresJ);
     }
+}
+
+void Info::reinitialiserH()
+{
+    m_horlJ.m_horlJeu.restart();
+    pauseH();
+    m_horlJ.m_tempsEcoule=0.f;
+}
+
+void Info::demarrerH()
+{
+    if(m_horlJ.etat !=EnMarche)
+    {
+        m_horlJ.m_horlJeu.restart();
+        m_horlJ.etat=EnMarche;
+    }
+}
+
+void Info::pauseH()
+{
+    if(m_horlJ.etat !=EnPause)
+    {
+        m_horlJ.etat=EnPause;
+        m_horlJ.m_tempsEcoule += m_horlJ.m_horlJeu.getElapsedTime().asSeconds();
+    }
+}
+
+float Info::getTemps()
+{
+    float temps;
+    if(m_horlJ.etat == EnPause)
+    {
+        temps=m_horlJ.m_tempsEcoule;
+    }
+    else
+    {
+        temps= m_horlJ.m_horlJeu.getElapsedTime().asSeconds() + m_horlJ.m_tempsEcoule;
+    }
+
+    return temps;
+}
+
+void Info::gestionTemps()
+{
+    int temps=int(getTemps());
+    std::ostringstream m_streamTxtTemps;
+    m_streamTxtTemps.str("");
+    m_streamTxtTemps<< nbEnString(temps/60) << " : "<< nbEnString(temps%60);
+
+    m_txtTemps.setString(m_streamTxtTemps.str());
 }
 
 void Info::afficheNomAEnreg()
@@ -349,6 +396,3 @@ Info::~Info()
 {
 
 }
-
-
-

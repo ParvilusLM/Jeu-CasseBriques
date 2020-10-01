@@ -14,6 +14,8 @@ bool jeuSauvegarde=false;
 int sourisX=0,sourisY=0;
 int scoreTemp=0;
 
+
+
 int tabBriq[14][12]={0};
 
 int main()
