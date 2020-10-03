@@ -41,6 +41,8 @@ public:
     float getTemps();
     void gestionTemps();
 
+    void setNbBriqRest(int nb);
+
     template <class T> std::string nbEnString(T nb);
     ~Info();
 

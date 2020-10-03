@@ -20,7 +20,7 @@ public:
     void afficheInfo();
 
     void gestionMaJ();
-    bool gestCollisBalle();
+    void gestCollisBalle();
     bool gestCollisPalette();
     void gestMouvBalle();
     void gestMouvPalette(int dir);

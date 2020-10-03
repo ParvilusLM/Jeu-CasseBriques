@@ -13,8 +13,9 @@ void Controleur::debutJeu()
     m_decor->getBrique().initBrique(0);
     m_decor->getPalette().initPalette();
     m_decor->getBalle().initBalle();
+    int nbBriques=m_decor->getBrique().getBriques().size();
+    m_decor->getInfo().setNbBriqRest(nbBriques);
     m_decor->getInfo().initInfo2();
-
 
 }
 
@@ -32,21 +33,114 @@ void Controleur::gestionSelecSouris()
 
 void Controleur::gestionMaJ()
 {
-    m_decor->getPalette().DonneesMaJ();
-    m_decor->getInfo().gestionTemps();
-    gestMouvBalle();
-
-
     if(m_decor->getMenu().getBoutonPress()==PAUSER_ACTIF)
     {
         m_decor->getInfo().demarrerH();
+        m_decor->getBalle().resetHorlBalle();
         m_decor->getMenu().resetBoutonPress();
 
     }
+
+    m_decor->getPalette().DonneesMaJ();
+    m_decor->getInfo().gestionTemps();
+
+    gestMouvBalle();
+    gestCollisBalle();
+
 }
 
-bool Controleur::gestCollisBalle()
+void Controleur::gestCollisBalle()
 {
+
+    int compt=0;
+    while(compt < m_decor->getBalle().getBalle().size())
+    {
+        int collision=AUCUNE_COLLIS;
+
+        //collision cote gauche
+        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x-12.5f < 2.45f*20.f)
+        {
+            collision=COLLIS_BORD_G;
+            m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(2.45f*20.f + 0.1f + 12.5f,m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y);
+        }
+        else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x+12.5f > 2.45f*20.f +600.f) //collision cote droit
+        {
+            collision=COLLIS_BORD_D;
+            m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(2.45f*20.f +600.f - 0.1f - 12.5f,m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y);
+        }
+        else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y-12.5f < 4.5f*20.f) //collision cote haut
+        {
+            collision=COLLIS_BORD_H;
+            m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,4.5f*20.f+12.5f+0.1f);
+        }
+        else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y+12.5f > 4.5f*20.f +600.f) //collision cote bas
+        {
+            collision=COLLIS_BORD_B;
+            m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,4.5f*20.f+600.f-12.5f-0.1f);
+        }
+        else
+        {
+
+        }
+
+        //determiner la zone des briques
+        sf::FloatRect zoneBriques;
+        zoneBriques.width=600.f;
+        zoneBriques.height=350.f;
+        zoneBriques.left=2.45f*20.f;
+        zoneBriques.top=4.5f*20.f;
+
+        //determiner la zone de la palette
+        sf::FloatRect zonePalette;
+        zonePalette.width=600.f;
+        zonePalette.height=60.f;
+        zonePalette.left=2.45f*20.f;
+        zonePalette.top=4.5f*20.f+600.f-60.f;
+
+
+
+        //determiner un rayon de detection pour la balle
+        sf::FloatRect zoneDetectCollis;
+        zoneDetectCollis.width=50.f;
+        zoneDetectCollis.height=50.f;
+        zoneDetectCollis.left=m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x-25.f;
+        zoneDetectCollis.top=m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y-25.f;
+
+        if(zoneDetectCollis.intersects(zoneBriques))
+        {
+            int compt2=0;
+            while(compt2<m_decor->getBrique().getBriques().size())
+            {
+                if(zoneDetectCollis.intersects(m_decor->getBrique().getBriques().at(compt2).sBrique.getGlobalBounds()))
+                {
+                    if(m_decor->getBalle().getBalle().at(compt).sBalle.getGlobalBounds().intersects(m_decor->getBrique().getBriques().at(compt2).sBrique.getGlobalBounds()))
+                    {
+                        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x)
+                        m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+                        std::cout<<"oohhh"<<std::endl;
+                    }
+
+                }
+
+                compt2++;
+            }
+        }
+
+        if(zoneDetectCollis.intersects(zonePalette))
+        {
+
+
+        }
+
+
+
+
+        compt++;
+    }
 
 }
 

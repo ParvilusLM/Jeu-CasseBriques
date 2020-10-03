@@ -16,8 +16,9 @@ public:
     void afficheBrique();
     int chargerNiveau(int niveau);
     void changerNiveau(int niveau);
-    sf::FloatRect getPosBriques();
+    std::vector<ElBrique >& getBriques();
     void gestiontextures();
+    void effacementBriques();
 
 
 

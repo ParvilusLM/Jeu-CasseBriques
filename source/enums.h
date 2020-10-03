@@ -16,8 +16,8 @@ struct ElBalle
     int etat;
     float angleB;
     float vitesseB;
-    float dirX;
-    float dirY;
+    int dirX;
+    int dirY;
     int numBalle;
 };
 
@@ -101,6 +101,19 @@ enum
 {
     DIR_GAUCHE,
     DIR_DROITE
+};
+
+enum
+{
+    AUCUNE_COLLIS,
+    COLLIS_BORD_G,
+    COLLIS_BORD_D,
+    COLLIS_BORD_H,
+    COLLIS_BORD_B,
+    COLLIS_BRIQUE_G,
+    COLLIS_BRIQUE_D,
+    COLLIS_BRIQUE_H,
+    COLLIS_BRIQUE_B
 };
 
 #endif // DEF_ENUMS

@@ -5,6 +5,7 @@ using namespace std;
 Info::Info(sf::RenderWindow& fenetre):m_fenetre(0)
 {
     m_fenetre=&fenetre;
+    m_nbBrRestants=0;
 
     initInfo();
     chargementDonnees();
@@ -40,7 +41,7 @@ void Info::initInfo()
 
     m_txtInfoJeu.setFont(m_fntChiffres);
     m_txtInfoJeu.setCharacterSize(35);
-    m_txtInfoJeu.setPosition(3.9f*20.f,20.7f*20.f+5.f);
+    m_txtInfoJeu.setPosition(740.f,100.f);
     m_txtInfoJeu.setFillColor(sf::Color::White);
     m_txtInfoJeu.setLineSpacing(2.2f);
 
@@ -51,8 +52,8 @@ void Info::initInfo()
 
     m_txtTemps.setFont(m_fntTemps);
     m_txtTemps.setCharacterSize(40);
-    m_txtTemps.setPosition(700,300);
-    m_txtTemps.setFillColor(sf::Color::Black);
+    m_txtTemps.setPosition(750,580);
+    m_txtTemps.setFillColor(sf::Color::White);
 
 
 
@@ -72,9 +73,9 @@ void Info::initInfo2()
     m_score=0;
     m_niveau=1;
     m_nbVie=3;
-    m_nbBrRestants=0;
 
     //gestion des info durant la partie
+    reinitialiserH();
     demarrerH();
     gestionTemps();
     gestInfoPartEnCours();
@@ -188,19 +189,15 @@ void Info::initDonneesScores()
 
 void Info::gestTableauScore()
 {
-
-
     m_streamNomsJ.str("");
     m_streamNomsJ<<m_vecNoms.at(0)<<"\n"<<m_vecNoms.at(1)<<"\n"<<m_vecNoms.at(2)<<"\n";
     m_txtNomsJ.setString(m_streamNomsJ.str());
     m_txtNomsJ.setLineSpacing(0.75f);
 
-
     m_streamScoresJ.str("");
     m_streamScoresJ<<m_vecScores.at(0)<<"\n"<<m_vecScores.at(1)<<"\n"<<m_vecScores.at(2)<<"\n";
     m_txtScoresJ.setString(m_streamScoresJ.str());
     m_txtScoresJ.setLineSpacing(0.75f);
-
 }
 
 void Info::gestInfoPartEnCours()
@@ -213,7 +210,7 @@ void Info::gestInfoPartEnCours()
 
     //
     m_streamInfoJeu.str("");
-    m_streamInfoJeu<<nbEnString(m_nbVie)<<"\n"<<nbEnString(m_score)<<"\n"<<nbEnString(m_nbBrRestants);
+    m_streamInfoJeu<<nbEnString(m_nbVie)<<"\n\n"<<nbEnString(m_score)<<"\n\n"<<nbEnString(m_nbBrRestants);
     m_txtInfoJeu.setString(m_streamInfoJeu.str());
 
     gestionTemps();
@@ -296,7 +293,8 @@ void Info::sauvegardeScore()
 
 void Info::maj_Info()
 {
-    gestionTemps();
+    //gestionTemps();
+    //gestInfoPartEnCours();
 }
 
 void Info::afficheInfo()
@@ -361,6 +359,11 @@ void Info::gestionTemps()
     m_streamTxtTemps<< nbEnString(temps/60) << " : "<< nbEnString(temps%60);
 
     m_txtTemps.setString(m_streamTxtTemps.str());
+}
+
+void Info::setNbBriqRest(int nb)
+{
+   m_nbBrRestants=nb;
 }
 
 void Info::afficheNomAEnreg()

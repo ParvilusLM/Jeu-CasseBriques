@@ -162,9 +162,9 @@ void Brique::changerNiveau(int niveau)
 
 }
 
-sf::FloatRect Brique::getPosBriques()
+std::vector<ElBrique >& Brique::getBriques()
 {
-
+    return m_vecBrique;
 }
 
 void Brique::gestiontextures()
