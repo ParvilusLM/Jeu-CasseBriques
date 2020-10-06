@@ -15,7 +15,7 @@ public:
     void initBalle();
     void inverserAngle(int numBalle,int zoneCollis);
     void resetHorlBalle();
-
+    void effacementBalle();
     void mouvementBalle();
     void afficheBalle();
     std::vector<ElBalle >& getBalle();

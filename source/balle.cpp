@@ -71,6 +71,20 @@ std::vector<ElBalle >& Balle::getBalle()
     return m_vecBalle;
 }
 
+void Balle::effacementBalle()
+{
+    int dernEl=m_vecBalle.size()-1;
+    int compt=0;
+    while(compt<m_vecBalle.size())
+    {
+        if(m_vecBalle.at(dernEl).etat==B_A_DETRUIT)
+        {
+            m_vecBalle.erase(m_vecBalle.begin()+dernEl);
+        }
+        compt++;
+    }
+}
+
 void Balle::inverserAngle(int numBalle,int zoneCollis)
 {
     int compt=0;
@@ -91,6 +105,10 @@ void Balle::inverserAngle(int numBalle,int zoneCollis)
                 m_vecBalle.at(compt).dirX=-m_vecBalle.at(compt).dirX;
             }
             else if(zoneCollis==COLLIS_BRIQUE_H || zoneCollis==COLLIS_BRIQUE_B)
+            {
+                m_vecBalle.at(compt).dirY=-m_vecBalle.at(compt).dirY;
+            }
+            else if(zoneCollis==COLLIS_PALETTE_G || zoneCollis==COLLIS_PALETTE_C || zoneCollis==COLLIS_PALETTE_D)
             {
                 m_vecBalle.at(compt).dirY=-m_vecBalle.at(compt).dirY;
             }

@@ -77,6 +77,8 @@ void Brique::initBrique(int niveau)
 
 void Brique::afficheBrique()
 {
+    gestiontextures();
+
     int compt=0;
     while(compt<m_vecBrique.size())
     {
@@ -172,7 +174,7 @@ void Brique::gestiontextures()
     int compt=0;
     while(compt<m_vecBrique.size())
     {
-        m_vecBrique.at(compt).sBrique.setTexture(m_tBrique);
+        //m_vecBrique.at(compt).sBrique.setTexture(m_tBrique);
         if(m_vecBrique.at(compt).etat==NORMAL)
         {
             if(m_vecBrique.at(compt).couleur==1)
@@ -200,7 +202,7 @@ void Brique::gestiontextures()
 
             }
         }
-        else
+        else if(m_vecBrique.at(compt).etat==CASSE)
         {
             if(m_vecBrique.at(compt).couleur==1)
             {
@@ -227,7 +229,28 @@ void Brique::gestiontextures()
 
             }
         }
+        else
+        {
 
+        }
+
+        compt++;
+    }
+}
+
+
+void Brique::effacementBriques()
+{
+    int compt=0;
+    int dernEl=m_vecBrique.size()-1;
+    while(compt<m_vecBrique.size())
+    {
+        if(m_vecBrique.at(dernEl).etat==DETRUIT)
+        {
+            m_vecBrique.erase(m_vecBrique.begin()+dernEl);
+        }
+
+        dernEl--;
         compt++;
     }
 }

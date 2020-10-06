@@ -18,9 +18,10 @@ public:
     void mouvementProjectiles();
 
     sf::Vector2f getPosPalette();
+    ElPalette& getPalette();
     void setPosPalette(sf::Vector2f posPalette);
     std::vector<sf::FloatRect > getPosProjectiles();
-    void DonneesMaJ();
+    void donneesMaJ();
 
     void affichePalette();
     void afficheProjectiles();

@@ -41,12 +41,11 @@ void Controleur::gestionMaJ()
 
     }
 
-    m_decor->getPalette().DonneesMaJ();
+    m_decor->getPalette().donneesMaJ();
     m_decor->getInfo().gestionTemps();
 
     gestMouvBalle();
     gestCollisBalle();
-
 }
 
 void Controleur::gestCollisBalle()
@@ -78,9 +77,10 @@ void Controleur::gestCollisBalle()
         }
         else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y+12.5f > 4.5f*20.f +600.f) //collision cote bas
         {
-            collision=COLLIS_BORD_B;
-            m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
-            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,4.5f*20.f+600.f-12.5f-0.1f);
+            m_decor->getBalle().getBalle().at(compt).etat==B_A_DETRUIT;
+            //collision=COLLIS_BORD_B;
+            //m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+            //m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,4.5f*20.f+600.f-12.5f-0.1f);
         }
         else
         {
@@ -110,6 +110,7 @@ void Controleur::gestCollisBalle()
         zoneDetectCollis.left=m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x-25.f;
         zoneDetectCollis.top=m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y-25.f;
 
+        //collision avec les briques
         if(zoneDetectCollis.intersects(zoneBriques))
         {
             int compt2=0;
@@ -119,8 +120,74 @@ void Controleur::gestCollisBalle()
                 {
                     if(m_decor->getBalle().getBalle().at(compt).sBalle.getGlobalBounds().intersects(m_decor->getBrique().getBriques().at(compt2).sBrique.getGlobalBounds()))
                     {
-                        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x)
+                        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x-24.f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x+24.f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y > m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y)
+                        {
+                            collision=COLLIS_BRIQUE_B;
+
+                        }
+
+                        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x-24.f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x+24.f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y)
+                        {
+                            collision=COLLIS_BRIQUE_H;
+                        }
+
+                        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y > m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y-12.5f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y+12.5f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x)
+                        {
+                            collision=COLLIS_BRIQUE_G;
+                        }
+
+                        if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y > m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y-12.5f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y+12.5f &&
+                           m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x)
+                        {
+                            collision=COLLIS_BRIQUE_D;
+                        }
+
                         m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+
+
+                        if(collision==COLLIS_BRIQUE_G)
+                        {
+                            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x-24.f-12.5f-0.1f,m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y);
+                        }
+                        else if(collision==COLLIS_BRIQUE_D)
+                        {
+                            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().x+24.f+12.5f+0.1f,m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y);
+                        }
+                        else if(collision==COLLIS_BRIQUE_H)
+                        {
+                            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y-11.5f-12.5f-0.1f);
+                        }
+                        else if(collision==COLLIS_BRIQUE_B)
+                        {
+                            m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,m_decor->getBrique().getBriques().at(compt2).sBrique.getPosition().y+11.5f+12.5f+0.1f);
+                        }
+                        else
+                        {
+
+                        }
+
+                        if(collision==COLLIS_BRIQUE_G || collision==COLLIS_BRIQUE_D || collision==COLLIS_BRIQUE_H || collision==COLLIS_BRIQUE_B)
+                        {
+                            if(m_decor->getBrique().getBriques().at(compt2).etat==NORMAL)
+                            {
+                                m_decor->getBrique().getBriques().at(compt2).etat=CASSE;
+                            }
+                            else if(m_decor->getBrique().getBriques().at(compt2).etat==CASSE)
+                            {
+                                m_decor->getBrique().getBriques().at(compt2).etat=DETRUIT;
+                            }
+                            else
+                            {
+
+                            }
+                        }
                         std::cout<<"oohhh"<<std::endl;
                     }
 
@@ -128,12 +195,70 @@ void Controleur::gestCollisBalle()
 
                 compt2++;
             }
+
+            m_decor->getBrique().effacementBriques();
         }
 
+        //collision avec la palette
         if(zoneDetectCollis.intersects(zonePalette))
         {
+            if(zoneDetectCollis.intersects(m_decor->getPalette().getPalette().sPalette.getGlobalBounds()))
+            {
+                if(m_decor->getBalle().getBalle().at(compt).sBalle.getGlobalBounds().intersects(m_decor->getPalette().getPalette().sPalette.getGlobalBounds()))
+                {
+                    float taillePal= m_decor->getPalette().getPalette().sPalette.getGlobalBounds().width;
+                    float tailleCoteP=0.f;
+                    float tailleCentreP=0.f;
+
+                    if(taillePal==90.f)
+                    {
+                        tailleCoteP=16.f;
+                        tailleCentreP=taillePal-(tailleCoteP*2);
+                    }
+                    else if(taillePal==120.f)
+                    {
+                        tailleCoteP=16.f;
+                        tailleCentreP=taillePal-(tailleCoteP*2);
+                    }
+                    else
+                    {
+
+                    }
 
 
+                    if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getPalette().getPalette().sPalette.getPosition().x - (taillePal/2.f) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getPalette().getPalette().sPalette.getPosition().x - ((taillePal/2.f)+tailleCoteP) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getPalette().getPalette().sPalette.getPosition().y)
+                    {
+                        collision=COLLIS_PALETTE_G;
+                        m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+                        m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,HAUTEUR_F-35.f-20.f-12.5f-0.1f);
+                    }
+                    else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2.f) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2.f) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getPalette().getPalette().sPalette.getPosition().y)
+                    {
+                        collision=COLLIS_PALETTE_D;
+                        m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+                        m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,HAUTEUR_F-35.f-20.f-12.5f-0.1f);
+                    }
+                    else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x >= m_decor->getPalette().getPalette().sPalette.getPosition().x - (tailleCentreP/2.f) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x <= m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2.f) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getPalette().getPalette().sPalette.getPosition().y)
+                    {
+                        collision=COLLIS_PALETTE_C;
+                        m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+                        m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,HAUTEUR_F-35.f-20.f-12.5f-0.1f);
+                    }
+                    else
+                    {
+
+                    }
+
+                    //m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+                }
+
+            }
         }
 
 
@@ -141,6 +266,8 @@ void Controleur::gestCollisBalle()
 
         compt++;
     }
+
+    m_decor->getBalle().effacementBalle();
 
 }
 

@@ -94,7 +94,8 @@ enum
 enum
 {
     CAPTURE,
-    LANCEE
+    LANCEE,
+    B_A_DETRUIT
 };
 
 enum
@@ -113,7 +114,10 @@ enum
     COLLIS_BRIQUE_G,
     COLLIS_BRIQUE_D,
     COLLIS_BRIQUE_H,
-    COLLIS_BRIQUE_B
+    COLLIS_BRIQUE_B,
+    COLLIS_PALETTE_G,
+    COLLIS_PALETTE_C,
+    COLLIS_PALETTE_D
 };
 
 #endif // DEF_ENUMS

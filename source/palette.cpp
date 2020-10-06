@@ -23,7 +23,7 @@ void Palette::initPalette()
     m_palette.sPalette.setTextureRect(sf::IntRect(0,0,90,35));
 
     m_palette.etat=NORMAL;
-    m_palette.vitesseP=600;
+    m_palette.vitesseP=800;
 
 
 }
@@ -60,6 +60,11 @@ void Palette::setPosPalette(sf::Vector2f posPalette)
     m_palette.sPalette.setPosition(posPalette);
 }
 
+ElPalette& Palette::getPalette()
+{
+    return m_palette;
+}
+
 void Palette::affichePalette()
 {
     m_fenetre->draw(m_palette.sPalette);
@@ -70,7 +75,7 @@ void Palette::afficheProjectiles()
 
 }
 
-void Palette::DonneesMaJ()
+void Palette::donneesMaJ()
 {
     m_deltaTime=m_horlPalette.restart().asSeconds();
 }
