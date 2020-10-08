@@ -77,7 +77,11 @@ void Controleur::gestCollisBalle()
         }
         else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y+12.5f > 4.5f*20.f +600.f) //collision cote bas
         {
-            m_decor->getBalle().getBalle().at(compt).etat==B_A_DETRUIT;
+            if(m_decor->getBalle().getBalle().size()>1)
+            {
+                m_decor->getBalle().getBalle().at(compt).etat==B_A_DETRUIT;
+            }
+
             //collision=COLLIS_BORD_B;
             //m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
             //m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,4.5f*20.f+600.f-12.5f-0.1f);

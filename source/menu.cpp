@@ -15,6 +15,14 @@ Menu::Menu(sf::RenderWindow &fenetre):m_fenetre(0)
     m_tMenuFinP.loadFromFile("donnees/gameOver.png");
     m_tMenuEnregScore.loadFromFile("donnees/meilleur_score.png");
 
+    m_tSelectEScore.loadFromFile("donnees/selectEScore.png");
+    m_tSelectInstr.loadFromFile("donnees/selectInstruct.png");
+    m_tSelectMGO.loadFromFile("donnees/selectMGO.png");
+    m_tSelectMP.loadFromFile("donnees/selectMP.png");
+    m_tSelectMPause.loadFromFile("donnees/selectMPaus.png");
+
+
+
     //definitions boiteEBoutons
     boiteEBJ.width=14.f*20.f;
     boiteEBJ.height=3.5f*20.f;
@@ -28,8 +36,8 @@ Menu::Menu(sf::RenderWindow &fenetre):m_fenetre(0)
 
     boiteEBQ.width=3.f*20.f;
     boiteEBQ.height=3.f*20.f;
-    boiteEBQ.left=31.9f*20.f;
-    boiteEBQ.top=30.7f*20.f;
+    boiteEBQ.left=32.2f*20.f;
+    boiteEBQ.top=30.8f*20.f;
 
     boiteEBPr.width=2.2f*20.f;
     boiteEBPr.height=2.2f*20.f;
@@ -46,19 +54,19 @@ Menu::Menu(sf::RenderWindow &fenetre):m_fenetre(0)
     boiteEBOk.left=20.4f*20.f;
     boiteEBOk.top=28.9f*20.f;
 
-    boiteEBPR.width=6.f*20.f;
-    boiteEBPR.height=2.f*20.f;
-    boiteEBPR.left=19.f*20.f;
+    boiteEBPR.width=8.4f*20.f;
+    boiteEBPR.height=2.3f*20.f;
+    boiteEBPR.left=17.8f*20.f;
     boiteEBPR.top=15.f*20.f;
 
-    boiteEBPI.width=6.f*20.f;
-    boiteEBPI.height=2.f*20.f;
-    boiteEBPI.left=19.f*20.f;
+    boiteEBPI.width=8.4f*20.f;
+    boiteEBPI.height=2.3f*20.f;
+    boiteEBPI.left=17.8f*20.f;
     boiteEBPI.top=18.f*20.f;
 
-    boiteEBPQ.width=6.f*20.f;
-    boiteEBPQ.height=2.f*20.f;
-    boiteEBPQ.left=19.f*20.f;
+    boiteEBPQ.width=8.4f*20.f;
+    boiteEBPQ.height=2.3f*20.f;
+    boiteEBPQ.left=17.8f*20.f;
     boiteEBPQ.top=21.f*20.f;
 
     boiteEBFQ.width=2.5f*20.f;
@@ -252,6 +260,11 @@ void Menu::afficheMenu()
 
     }
 
+    if(m_elementActif!=AUCUN_EL_ACT)
+    {
+        m_fenetre->draw(m_sIndicSelect);
+    }
+
 }
 
 void Menu::retourMenuP()
@@ -265,17 +278,27 @@ void Menu::elementActif()
 
     if(m_typeMenu==MenuPrincipal)
     {
+        m_sIndicSelect.setTexture(m_tSelectMP);
         if(collisionTS(boiteEBJ))
         {
             m_elementActif=JOUER_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(boiteEBJ.left,boiteEBJ.top,boiteEBJ.width,boiteEBJ.height));
+            m_sIndicSelect.setPosition(boiteEBJ.left,boiteEBJ.top);
         }
         else if(collisionTS(boiteEBI))
         {
             m_elementActif=INSTRUCTIONS_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(boiteEBI.left,boiteEBI.top,boiteEBI.width,boiteEBI.height));
+            m_sIndicSelect.setPosition(boiteEBI.left,boiteEBI.top);
         }
         else if(collisionTS(boiteEBQ))
         {
             m_elementActif=QUITTER_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(31.f*20.f,30.f*20.f,4.2f*20.f,4.2f*20.f));
+            m_sIndicSelect.setPosition(31.f*20.f,30.f*20.f);
         }
         else
         {
@@ -285,13 +308,20 @@ void Menu::elementActif()
     }
     else if(m_typeMenu==MenuInstructions1)
     {
+        m_sIndicSelect.setTexture(m_tSelectInstr);
         if(collisionTS(boiteEBOk))
         {
             m_elementActif=OK_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(20.f*20.f,28.f*20.f,6.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(20.f*20.f,28.f*20.f);
         }
         else if(collisionTS(boiteEBSuiv))
         {
             m_elementActif=SUIVANT_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(26.f*20.f,28.f*20.f,4.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(26.f*20.f,28.f*20.f);
         }
         else
         {
@@ -300,17 +330,27 @@ void Menu::elementActif()
     }
     else if(m_typeMenu==MenuInstructions2)
     {
+        m_sIndicSelect.setTexture(m_tSelectInstr);
         if(collisionTS(boiteEBOk))
         {
             m_elementActif=OK_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(20.f*20.f,28.f*20.f,6.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(20.f*20.f,28.f*20.f);
         }
         else if(collisionTS(boiteEBSuiv))
         {
             m_elementActif=SUIVANT_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(26.f*20.f,28.f*20.f,4.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(26.f*20.f,28.f*20.f);
         }
         else if(collisionTS(boiteEBPr))
         {
             m_elementActif=PRECEDENT_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(15.f*20.f,28.f*20.f,4.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(15.f*20.f,28.f*20.f);
         }
         else
         {
@@ -320,13 +360,21 @@ void Menu::elementActif()
     }
     else if(m_typeMenu==MenuInstructions3)
     {
+        m_sIndicSelect.setTexture(m_tSelectInstr);
+
         if(collisionTS(boiteEBOk))
         {
             m_elementActif=OK_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(20.f*20.f,28.f*20.f,6.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(20.f*20.f,28.f*20.f);
         }
         else if(collisionTS(boiteEBPr))
         {
             m_elementActif=PRECEDENT_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(15.f*20.f,28.f*20.f,4.f*20.f,4.f*20.f));
+            m_sIndicSelect.setPosition(15.f*20.f,28.f*20.f);
         }
         else
         {
@@ -336,17 +384,28 @@ void Menu::elementActif()
     }
     else if(m_typeMenu==MenuPause)
     {
+        m_sIndicSelect.setTexture(m_tSelectMPause);
+
         if(collisionTS(boiteEBPR))
         {
             m_elementActif=PAUSER_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(17.f*20.f,14.f*20.f,10.f*20.f,3.f*20.f));
+            m_sIndicSelect.setPosition(17.f*20.f,14.f*20.f);
         }
         else if(collisionTS(boiteEBPI))
         {
             m_elementActif=PAUSEI_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(15.f*20.f,17.5f*20.f,12.f*20.f,3.f*20.f));
+            m_sIndicSelect.setPosition(15.f*20.f,17.5f*20.f);
         }
         else if(collisionTS(boiteEBPQ))
         {
             m_elementActif=PAUSEQ_ACTIF;
+
+            m_sIndicSelect.setTextureRect(sf::IntRect(15.f*20.f,21.f*20.f,12.f*20.f,3.f*20.f));
+            m_sIndicSelect.setPosition(15.f*20.f,21.f*20.f);
         }
         else
         {

@@ -413,7 +413,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1601951972 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\balle.cpp
+1601953172 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\balle.cpp
 	"balle.h"
 
 1600830675 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\bonus.cpp
@@ -422,7 +422,7 @@
 1601749274 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\briques.cpp
 	"briques.h"
 
-1601952270 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\controleur.cpp
+1601954999 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\controleur.cpp
 	"controleur.h"
 
 1601401244 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\decor.cpp
@@ -447,7 +447,7 @@
 	"varG.h"
 	"constantes.h"
 
-1601583557 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.h
+1602102152 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.h
 	<SFML/Graphics.hpp>
 	"enums.h"
 	"varG.h"
@@ -464,7 +464,7 @@
 1601949530 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\palette.cpp
 	"palette.h"
 
-1601584141 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.cpp
+1602132016 source:c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\menu.cpp
 	"menu.h"
 
 1601589197 c:\users\my foe\documents\programmation projets\sfml\version 2.0\proj casse briques\casse briques 2.0\source\info.h

@@ -58,6 +58,10 @@ private:
 
     int m_boutonPress;
 
+    //pour le masque selecteur
+    sf::Texture m_tSelectInstr,m_tSelectMP,m_tSelectMPause,m_tSelectMGO,m_tSelectEScore;
+    sf::Sprite m_sIndicSelect;
+
     //pour menu principal
     sf::Texture m_tMenuP;
     sf::Sprite m_sMenuP;
