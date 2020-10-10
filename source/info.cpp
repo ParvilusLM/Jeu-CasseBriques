@@ -217,13 +217,7 @@ void Info::gestSaisieNom(char characTape)
     {
         m_nomAENreg+=characTape;
         m_txtNomAEnreg.setString(m_nomAENreg);
-
-        if(m_nomAENreg.size()==5)
-        {
-            m_nomAENreg+='\n';
-        }
     }
-
 }
 
 void Info::sauvegardeScore()
@@ -251,6 +245,7 @@ void Info::sauvegardeScore()
     m_vecScores.insert(m_vecScores.begin()+posJoueur,strScore);
     m_vecScores.pop_back();
 
+    m_nomAENreg+='\n';
     m_vecNoms.insert(m_vecNoms.begin()+posJoueur,m_nomAENreg);
     m_vecNoms.pop_back();
 
