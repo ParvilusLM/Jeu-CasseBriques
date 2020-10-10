@@ -13,9 +13,10 @@ void Controleur::debutJeu()
     m_decor->getBrique().initBrique(0);
     m_decor->getPalette().initPalette();
     m_decor->getBalle().initBalle();
-    int nbBriques=m_decor->getBrique().getBriques().size();
-    m_decor->getInfo().setNbBriqRest(nbBriques);
+
     m_decor->getInfo().initInfo2();
+    int nbBriques=m_decor->getBrique().getBriques().size();
+    m_decor->getInfo().setDonnees(D_NbBRIQRest,AUGMENTE,nbBriques);
 
 }
 
@@ -41,11 +42,47 @@ void Controleur::gestionMaJ()
 
     }
 
-    m_decor->getPalette().donneesMaJ();
-    m_decor->getInfo().gestionTemps();
-
     gestMouvBalle();
     gestCollisBalle();
+
+    m_decor->getPalette().donneesMaJ();
+
+    m_decor->getInfo().maj_Info();
+
+    if(finPartie())
+    {
+        jeuFinPartie=true;
+    }
+
+    if(jeuFinPartie)
+    {
+        jeuPause=true;
+
+        if(m_decor->getInfo().surPodium())
+        {
+            m_decor->getMenu().setTypeMenu(MenuEnregScore);
+        }
+        else
+        {
+            m_decor->getMenu().setTypeMenu(MenuFinPartie);
+        }
+
+        jeuFinPartie=false;
+    }
+
+    if(jeuRejouer)
+    {
+        debutJeu();
+        jeuRejouer=false;
+        jeuPause=false;
+    }
+
+    if(jeuSauvegarde)
+    {
+        m_decor->getInfo().sauvegardeScore();
+        jeuSauvegarde=false;
+    }
+
 }
 
 void Controleur::gestCollisBalle()
@@ -77,14 +114,31 @@ void Controleur::gestCollisBalle()
         }
         else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y+12.5f > 4.5f*20.f +600.f) //collision cote bas
         {
-            if(m_decor->getBalle().getBalle().size()>1)
+
+            if(m_decor->getBalle().getBalle().size()==1)
             {
-                m_decor->getBalle().getBalle().at(compt).etat==B_A_DETRUIT;
+                if(m_decor->getInfo().getDonnees(D_VIE)==1)
+                {
+                    m_decor->getBalle().getBalle().at(compt).etat==B_A_DETRUIT;
+                    m_decor->getInfo().setDonnees(D_VIE,DIMINUE);
+                }
+                else
+                {
+                    m_decor->getInfo().setDonnees(D_VIE,DIMINUE);
+                    collision=COLLIS_BORD_B;
+                    m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
+                    m_decor->getBalle().getBalle().at(compt).sBalle.setPosition((2.45f*20.f)+300.f,700.f-70.f);
+
+                }
+
+            }
+            else
+            {
+
             }
 
-            //collision=COLLIS_BORD_B;
-            //m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
-            //m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,4.5f*20.f+600.f-12.5f-0.1f);
+
+
         }
         else
         {
@@ -186,13 +240,15 @@ void Controleur::gestCollisBalle()
                             else if(m_decor->getBrique().getBriques().at(compt2).etat==CASSE)
                             {
                                 m_decor->getBrique().getBriques().at(compt2).etat=DETRUIT;
+                                m_decor->getInfo().setDonnees(D_NbBRIQRest,DIMINUE);
+                                m_decor->getInfo().setDonnees(D_SCORE,AUGMENTE,10);
                             }
                             else
                             {
 
                             }
                         }
-                        std::cout<<"oohhh"<<std::endl;
+                        //std::cout<<"oohhh"<<std::endl;
                     }
 
                 }
@@ -230,24 +286,24 @@ void Controleur::gestCollisBalle()
                     }
 
 
-                    if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getPalette().getPalette().sPalette.getPosition().x - (taillePal/2.f) &&
-                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getPalette().getPalette().sPalette.getPosition().x - ((taillePal/2.f)+tailleCoteP) &&
+                    if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x >= m_decor->getPalette().getPalette().sPalette.getPosition().x - (taillePal/2) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getPalette().getPalette().sPalette.getPosition().x - (tailleCentreP/2) &&
                        m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getPalette().getPalette().sPalette.getPosition().y)
                     {
                         collision=COLLIS_PALETTE_G;
                         m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
                         m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,HAUTEUR_F-35.f-20.f-12.5f-0.1f);
                     }
-                    else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2.f) &&
-                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x < m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2.f) &&
+                    else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x > m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x <= m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2) + tailleCoteP &&
                        m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getPalette().getPalette().sPalette.getPosition().y)
                     {
                         collision=COLLIS_PALETTE_D;
                         m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
                         m_decor->getBalle().getBalle().at(compt).sBalle.setPosition(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x,HAUTEUR_F-35.f-20.f-12.5f-0.1f);
                     }
-                    else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x >= m_decor->getPalette().getPalette().sPalette.getPosition().x - (tailleCentreP/2.f) &&
-                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x <= m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2.f) &&
+                    else if(m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x >= m_decor->getPalette().getPalette().sPalette.getPosition().x - (tailleCentreP/2) &&
+                       m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().x <= m_decor->getPalette().getPalette().sPalette.getPosition().x + (tailleCentreP/2) &&
                        m_decor->getBalle().getBalle().at(compt).sBalle.getPosition().y < m_decor->getPalette().getPalette().sPalette.getPosition().y)
                     {
                         collision=COLLIS_PALETTE_C;
@@ -259,7 +315,6 @@ void Controleur::gestCollisBalle()
 
                     }
 
-                    //m_decor->getBalle().inverserAngle(m_decor->getBalle().getBalle().at(compt).numBalle,collision);
                 }
 
             }
@@ -302,6 +357,16 @@ void Controleur::gestMouvPalette(int dir)
     if(!gestCollisPalette())
     {
         m_decor->getPalette().mouvementPalette(dir);
+
+        //pour bouger la balle avec la palette
+        if(m_decor->getBalle().getBalle().size()>0)
+        {
+            if(m_decor->getBalle().getBalle().at(0).etat==CAPTURE)
+            {
+                m_decor->getBalle().getBalle().at(0).sBalle.setPosition(m_decor->getPalette().getPosPalette().x,m_decor->getBalle().getBalle().at(0).sBalle.getPosition().y);
+            }
+        }
+
     }
 
     sf::Vector2f nouvPosP; //pour remettre la palette dans le cadre
@@ -365,18 +430,41 @@ void Controleur::afficheInfo()
 
 void Controleur::saisieL(char lettre)
 {
-    //m_decor->getInfo().gestSaisieNom(lettre);
+    m_decor->getInfo().gestSaisieNom(lettre);
 }
 
 void Controleur::sauvegardeScore()
 {
-    //m_decor->getInfo().sauvegardeScore();
-    //jeuSauvegarde=false;
+    m_decor->getInfo().sauvegardeScore();
+    jeuSauvegarde=false;
 }
 
 void Controleur::reinitTablScore()
 {
-    //m_decor->getInfo().gestTableauScore();
+    m_decor->getInfo().gestTableauScore();
+}
+
+bool Controleur::finPartie()
+{
+    bool finP=false;
+
+    if(m_decor->getInfo().getDonnees(D_VIE)==0)
+    {
+        finP=true;
+    }
+    else if(m_decor->getInfo().getDonnees(D_NbBRIQRest)==0)
+    {
+        finP=true;
+    }
+    else
+    {
+
+    }
+}
+
+void Controleur::lanceeBalle()
+{
+    m_decor->getBalle().getBalle().at(0).etat=LANCEE;
 }
 
 void Controleur::pauseJeu()

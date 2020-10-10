@@ -29,7 +29,7 @@ void Balle::initBalle()
 
     nouvelleBalle.numBalle=m_nbBalleCree;
     nouvelleBalle.angleB=angl;
-    nouvelleBalle.etat=LANCEE;
+    nouvelleBalle.etat=CAPTURE;
     nouvelleBalle.dirX=1;
     nouvelleBalle.dirY=1;
     nouvelleBalle.vitesseB=300;

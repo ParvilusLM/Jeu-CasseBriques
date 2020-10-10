@@ -11,6 +11,8 @@ Brique::Brique(sf::RenderWindow &fenetre):m_fenetre(0)
 
 void Brique::initBrique(int niveau)
 {
+    m_vecBrique.clear();
+
     chargerNiveau(niveau);
 
     //cration des briques dans le vecteur m_vecBrique

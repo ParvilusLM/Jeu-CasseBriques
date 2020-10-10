@@ -120,4 +120,18 @@ enum
     COLLIS_PALETTE_D
 };
 
+enum
+{
+    D_VIE,
+    D_NbBRIQRest,
+    D_SCORE,
+    D_NIVEAU
+};
+
+enum
+{
+    DIMINUE,
+    AUGMENTE
+};
+
 #endif // DEF_ENUMS

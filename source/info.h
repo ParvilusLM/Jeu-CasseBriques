@@ -16,23 +16,30 @@ class Info
 {
 public:
     Info(sf::RenderWindow& fenetre);
+
+    //initialisation
     void initInfo();//pour les info du menuP
     void reinitInfo();//pour les info du menuP
-
     void initInfo2();//pour les info du jeu
     void reinitInfo2();//pour les info du jeu
-
     int chargementDonnees();
     void initDonneesN();
     void initDonneesScores();
+
+    //traitement donnees
     void gestTableauScore();
     void gestInfoPartEnCours();
     void gestSaisieNom(char characTape);
     void sauvegardeScore();
     void maj_Info();
+    bool surPodium();
+
+    int getDonnees(int typDonnees);
+    void setDonnees(int typDonnees, int action, int valeur=0);
+
+    //affichage
     void afficheInfo();
     void afficheNomAEnreg();
-    bool surPodium();
 
     //fonctions pour gerer l'horloge
     void reinitialiserH();
@@ -40,8 +47,6 @@ public:
     void pauseH();
     float getTemps();
     void gestionTemps();
-
-    void setNbBriqRest(int nb);
 
     template <class T> std::string nbEnString(T nb);
     ~Info();

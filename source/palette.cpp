@@ -18,12 +18,12 @@ void Palette::initPalette()
     m_horlPalette.restart();
 
     m_palette.sPalette.setOrigin(45.f,17.5f);
-    m_palette.sPalette.setPosition(LARGEUR_F/2,HAUTEUR_F-17.5f-20.f);
+    m_palette.sPalette.setPosition((2.45f*20.f)+300.f,HAUTEUR_F-17.5f-20.f);
     m_palette.sPalette.setTexture(m_tPalette);
     m_palette.sPalette.setTextureRect(sf::IntRect(0,0,90,35));
 
     m_palette.etat=NORMAL;
-    m_palette.vitesseP=800;
+    m_palette.vitesseP=1000;
 
 
 }

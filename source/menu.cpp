@@ -283,8 +283,8 @@ void Menu::elementActif()
         {
             m_elementActif=JOUER_ACTIF;
 
-            m_sIndicSelect.setTextureRect(sf::IntRect(boiteEBJ.left,boiteEBJ.top,boiteEBJ.width,boiteEBJ.height));
-            m_sIndicSelect.setPosition(boiteEBJ.left,boiteEBJ.top);
+            m_sIndicSelect.setTextureRect(sf::IntRect(boiteEBJ.left-10.f,boiteEBJ.top-10.f,boiteEBJ.width+15.f,boiteEBJ.height+15.f));
+            m_sIndicSelect.setPosition(boiteEBJ.left-10.f,boiteEBJ.top-10.f);
         }
         else if(collisionTS(boiteEBI))
         {
@@ -415,13 +415,19 @@ void Menu::elementActif()
     }
     else if(m_typeMenu==MenuFinPartie)
     {
+        m_sIndicSelect.setTexture(m_tSelectMGO);
+
         if(collisionTS(boiteEBFQ))
         {
             m_elementActif=FINPQ_ACTIF;
+            m_sIndicSelect.setTextureRect(sf::IntRect(16.f*20.f,23.6f*20.f,3.f*20.f,3.f*20.f));
+            m_sIndicSelect.setPosition(16.f*20.f,23.6f*20.f);
         }
         else if(collisionTS(boiteEBFR))
         {
             m_elementActif=FINPR_ACTIF;
+            m_sIndicSelect.setTextureRect(sf::IntRect(25.f*20.f,23.6f*20.f,3.f*20.f,3.f*20.f));
+            m_sIndicSelect.setPosition(25.f*20.f,23.6f*20.f);
         }
         else
         {
@@ -431,9 +437,13 @@ void Menu::elementActif()
     }
     else if(m_typeMenu==MenuEnregScore)
     {
+        m_sIndicSelect.setTexture(m_tSelectEScore);
+
         if(collisionTS(boiteEBESOk))
         {
             m_elementActif=ESOk_ACTIF;
+            m_sIndicSelect.setTextureRect(sf::IntRect(20.5f*20.f,20.5f*20.f,3.f*20.f,3.f*20.f));
+            m_sIndicSelect.setPosition(20.5f*20.f,20.5f*20.f);
         }
         else
         {
@@ -456,10 +466,12 @@ void Menu::selectionElActif()
         {
             jeuEnCours=true;
             jeuDebut=true;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==INSTRUCTIONS_ACTIF)
         {
             m_typeMenu=MenuInstructions1;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==QUITTER_ACTIF)
         {
@@ -483,10 +495,12 @@ void Menu::selectionElActif()
             {
                 m_typeMenu=MenuPause;
             }
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==SUIVANT_ACTIF)
         {
             m_typeMenu=MenuInstructions2;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else
         {
@@ -498,6 +512,7 @@ void Menu::selectionElActif()
         if(m_elementActif==PRECEDENT_ACTIF)
         {
             m_typeMenu=MenuInstructions1;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==OK_ACTIF)
         {
@@ -509,11 +524,13 @@ void Menu::selectionElActif()
             {
                 m_typeMenu=MenuPause;
             }
+            m_elementActif=AUCUN_EL_ACT;
 
         }
         else if(m_elementActif==SUIVANT_ACTIF)
         {
             m_typeMenu=MenuInstructions3;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else
         {
@@ -525,6 +542,7 @@ void Menu::selectionElActif()
         if(m_elementActif==PRECEDENT_ACTIF)
         {
             m_typeMenu=MenuInstructions2;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==OK_ACTIF)
         {
@@ -536,6 +554,7 @@ void Menu::selectionElActif()
             {
                 m_typeMenu=MenuPause;
             }
+            m_elementActif=AUCUN_EL_ACT;
         }
         else
         {
@@ -548,11 +567,13 @@ void Menu::selectionElActif()
         {
             jeuPause=false;
             m_boutonPress=PAUSER_ACTIF;
+            m_elementActif=AUCUN_EL_ACT;
 
         }
         else if(m_elementActif==PAUSEI_ACTIF)
         {
             m_typeMenu=MenuInstructions1;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==PAUSEQ_ACTIF)
         {
@@ -560,6 +581,7 @@ void Menu::selectionElActif()
             jeuEnCours=false;
             jeuDebut=false;
             m_typeMenu=MenuPrincipal;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else
         {
@@ -575,12 +597,14 @@ void Menu::selectionElActif()
             jeuDebut=false;
             jeuFinPartie=false;
             m_typeMenu=MenuPrincipal;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else if(m_elementActif==FINPR_ACTIF)
         {
             jeuPause=false;
             jeuRejouer=true;
             m_typeMenu=MenuPrincipal;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else
         {
@@ -597,6 +621,7 @@ void Menu::selectionElActif()
             jeuFinPartie=false;
             jeuSauvegarde=true;
             m_typeMenu=MenuPrincipal;
+            m_elementActif=AUCUN_EL_ACT;
         }
         else
         {

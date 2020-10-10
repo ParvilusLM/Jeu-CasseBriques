@@ -73,6 +73,7 @@ void Info::initInfo2()
     m_score=0;
     m_niveau=1;
     m_nbVie=3;
+    m_nbBrRestants=0;
 
     //gestion des info durant la partie
     reinitialiserH();
@@ -83,7 +84,9 @@ void Info::initInfo2()
 
 void Info::reinitInfo2()
 {
-    void reinitialiserH();
+    reinitialiserH();
+    m_nbBrRestants=0;
+
 }
 
 int Info::chargementDonnees()
@@ -202,18 +205,10 @@ void Info::gestTableauScore()
 
 void Info::gestInfoPartEnCours()
 {
-    if(scoreTemp!=0)
-    {
-        m_score+=scoreTemp;
-        scoreTemp=0;
-    }
-
     //
     m_streamInfoJeu.str("");
     m_streamInfoJeu<<nbEnString(m_nbVie)<<"\n\n"<<nbEnString(m_score)<<"\n\n"<<nbEnString(m_nbBrRestants);
     m_txtInfoJeu.setString(m_streamInfoJeu.str());
-
-    gestionTemps();
 }
 
 void Info::gestSaisieNom(char characTape)
@@ -222,6 +217,11 @@ void Info::gestSaisieNom(char characTape)
     {
         m_nomAENreg+=characTape;
         m_txtNomAEnreg.setString(m_nomAENreg);
+
+        if(m_nomAENreg.size()==5)
+        {
+            m_nomAENreg+='\n';
+        }
     }
 
 }
@@ -244,9 +244,11 @@ void Info::sauvegardeScore()
     }
 
     //remplir les vecteurs scores et noms
-    posJoueur--;
+    std::string strScore=nbEnString(m_score);
+    strScore+='\n';
 
-    m_vecScores.insert(m_vecScores.begin()+posJoueur,nbEnString(m_score));
+    posJoueur--;
+    m_vecScores.insert(m_vecScores.begin()+posJoueur,strScore);
     m_vecScores.pop_back();
 
     m_vecNoms.insert(m_vecNoms.begin()+posJoueur,m_nomAENreg);
@@ -293,8 +295,116 @@ void Info::sauvegardeScore()
 
 void Info::maj_Info()
 {
-    //gestionTemps();
-    //gestInfoPartEnCours();
+    gestionTemps();
+    gestInfoPartEnCours();
+}
+
+int Info::getDonnees(int typDonnees)
+{
+    if(typDonnees==D_VIE)
+    {
+        return m_nbVie;
+    }
+    else if(typDonnees==D_NbBRIQRest)
+    {
+        return m_nbBrRestants;
+    }
+    else if(typDonnees==D_SCORE)
+    {
+        return m_score;
+    }
+    else if(typDonnees==D_NIVEAU)
+    {
+        return m_niveau;
+    }
+    else
+    {
+
+    }
+
+}
+
+void Info::setDonnees(int typDonnees, int action, int valeur)
+{
+    if(typDonnees==D_VIE)
+    {
+        if(action==DIMINUE)
+        {
+            if(m_nbVie>0)
+            {
+                m_nbVie--;
+            }
+        }
+        else if(action==AUGMENTE)
+        {
+            m_nbVie++;
+        }
+        else
+        {
+
+        }
+    }
+    else if(typDonnees==D_NbBRIQRest)
+    {
+        if(action==DIMINUE)
+        {
+            if(m_nbBrRestants>0)
+            {
+                m_nbBrRestants--;
+            }
+
+        }
+        else if(action==AUGMENTE)
+        {
+            m_nbBrRestants=0;
+            m_nbBrRestants+=valeur;
+        }
+        else
+        {
+
+        }
+    }
+    else if(typDonnees==D_SCORE)
+    {
+        if(action==DIMINUE)
+        {
+            if(m_score>0)
+            {
+                m_score-=valeur;
+            }
+
+        }
+        else if(action==AUGMENTE)
+        {
+            m_score+=valeur;
+        }
+        else
+        {
+
+        }
+    }
+    else if(typDonnees==D_NIVEAU)
+    {
+        if(action==DIMINUE)
+        {
+            if(m_niveau>1)
+            {
+                m_niveau--;
+            }
+        }
+        else if(action==AUGMENTE)
+        {
+            m_niveau++;
+        }
+        else
+        {
+
+        }
+    }
+    else
+    {
+
+    }
 }
 
 void Info::afficheInfo()
@@ -361,10 +471,6 @@ void Info::gestionTemps()
     m_txtTemps.setString(m_streamTxtTemps.str());
 }
 
-void Info::setNbBriqRest(int nb)
-{
-   m_nbBrRestants=nb;
-}
 
 void Info::afficheNomAEnreg()
 {
@@ -391,7 +497,7 @@ bool Info::surPodium()
 template <class T> std::string Info::nbEnString(T nb)
 {
     std::ostringstream chaineCar;
-    chaineCar << nb;
+    chaineCar << nb ;
     return chaineCar.str();
 }
 

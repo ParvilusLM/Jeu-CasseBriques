@@ -139,7 +139,7 @@ int main()
                         }
                         else if(sf::Keyboard::isKeyPressed(Keyboard::Space))
                         {
-
+                            controleurJ.lanceeBalle();
                         }
                         else
                         {
@@ -169,7 +169,7 @@ int main()
                         char characTape;
                         characTape=static_cast<char>(evenement.text.unicode);
                         std::cout<<"ASCII character : "<<evenement.text.unicode<<std::endl;
-                        //controleurJ.saisieL(characTape);
+                        controleurJ.saisieL(characTape);
                     }
 
                 }
@@ -193,7 +193,8 @@ int main()
         {
             if(jeuSauvegarde)
             {
-
+                controleurJ.sauvegardeScore();
+                controleurJ.reinitTablScore();
             }
         }
 

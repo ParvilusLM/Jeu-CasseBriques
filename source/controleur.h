@@ -24,10 +24,13 @@ public:
     bool gestCollisPalette();
     void gestMouvBalle();
     void gestMouvPalette(int dir);
+    void lanceeBalle();
 
     void saisieL(char lettre);
     void sauvegardeScore();
     void reinitTablScore();
+
+    bool finPartie();
 
     void pauseJeu();
 
